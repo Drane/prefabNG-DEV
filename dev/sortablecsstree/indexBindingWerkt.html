@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <title>Egghead Videos</title>
+    <link rel="stylesheet" href="foundation.min.css">
+</head>
+<body>
+
+
+<div ng-app="myApp">
+
+
+<!--    <div ng-controller="FirstCtrl">
+        <div ng-controller="SecondCtrl">
+            <div class="button" ng-click="sayHi()">click me!</div>
+            <div class="button" ng-click="$parent.sayHi()">click me2!</div>
+            &lt;!&ndash;<span>data: {{data}}</span>&ndash;&gt;
+            <span>data|objectToArray: {{data|objectToArray}}</span>
+        </div>
+    </div>-->
+
+    <div ng-controller="NodeCtrl">
+        <textarea  ng-model="data.node" rows="12" cols="10">{{data.node}}</textarea>
+        <div node-tree>{{data.node}}</div>
+    </div>
+
+
+
+
+</div>
+
+
+<script src="angular.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
