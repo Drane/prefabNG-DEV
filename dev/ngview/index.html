@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <title>prefabNG-DEV</title>
+    <link href="../../app/lib/ui-bootstrap/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="../../components/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+<div ng-app="app">
+
+    <script type="text/ng-template" id="dev.html">
+        title: <input type="text" ng-model="model.title" class="input-mini" placeholder="title">
+        content: <input type="text" ng-model="model.content" class="input-mini" placeholder="content">
+        <button class="btn btn-mini btn-primary" ng-click="toggleContentVisible()">
+            <i class="icon-save icon-white"></i>{{title}}
+        </button>
+        <li class="dropdown">
+            <a class="dropdown-toggle" ng-transclude>
+                {{content}}
+            </a>
+            <ul class="dropdown-menu">
+                <li ng-repeat="choice in items">
+                    <a>{{choice}}</a>
+                </li>
+            </ul>
+        </li>
+    </script>
+
+    <ng-view></ng-view>
+
+    <!--<div ng-controller="AppCtrl">
+        {{data.message + " world"}}
+    </div>-->
+
+    <devdirective title="title">dev test</devdirective>
+
+</div>
+
+<script src="../../app/lib/angular/angular.js"></script>
+<script src="../../app/lib/ui-bootstrap/ui-bootstrap-tpls-0.1.0.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

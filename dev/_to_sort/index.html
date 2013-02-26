@@ -1,0 +1,48 @@
+<!doctype html>
+<html ng-app>
+<head>
+    <link rel="stylesheet" href="dev.css">
+    <script src="/app/lib/angular/angular.js"></script>
+    <script src="devcontroller.js"></script>
+    <script src="../components/jquery/jquery.js"></script>
+    <script src="../components/jquery.ui/ui/jquery.ui.core.js"></script>
+</head>
+<body>
+<h1>DEV</h1>
+<button onclick="javascript:refreh()">refresh</buv t ton>
+<!-- child.html -->
+<script type="text/ng-template" id="child.html">
+    <ul>
+        <li>
+            {{log.log('key:',key,'data:',value)}}
+            [{{$index + 1}}] {{key}} {{value}}
+            {{log.log('isObject(value):',isObject(value))}}
+        </li>
+        <ng-include ng-src="'child.html'" ng-show="isObject(value)"
+                    ng-repeat="(key, value) in value"/>
+    </ul>
+</script>
+
+<!--<script type="text/ng-template" id="child2.html">
+        <p>{{$parent}}</p><br /><br />
+</script>-->
+
+<div ng-controller="DevController">
+    <!--{{data}}<br/><br/>-->
+    <!-- parent.html -->
+    <div id="parent.html" ng-controller="DevController"  style="background-color: #ff0000">
+       <!-- <ul>
+            <li>-->
+                <ng-include src="'child.html'" ng-repeat="(key, value) in data" />
+        <!--    </li>
+        </ul>-->
+    </div>
+
+    <!--<div id="parent2.html" ng-controller="DevController"  style="background-color: #0000cc">-->
+        <!--<ng-include src="'child2.html'" ng-repeat="data in data" />-->
+    <!--</div>-->
+</div>
+
+
+</body>
+</html>

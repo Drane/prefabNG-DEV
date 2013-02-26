@@ -1,0 +1,34 @@
+<!doctype html>
+<html ng-app="nodeTreeApp">
+<head>
+    <title></title>
+    <script src="/app/lib/angular/angular.js"></script>
+    <script src="nodeTreeController.js"></script>
+    <script src="../components/ui-bootstrap/ui-bootstrap-tpls-0.1.0.js"></script>
+    <link rel="stylesheet" href="dev.css">
+    <link href="../components/ui-bootstrap/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="../components/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="dev.css">
+    <script src="../components/underscore/underscore-min.js"></script>
+    <script src="../components/angular-underscore/angular-underscore.js"></script>
+</head>
+<body>
+<div ng-controller="DevController">
+    <label>json:</label>
+    <textarea ng-model="jsonText" placeholder="Enter a name here">
+    </textarea>
+    <hr>bi
+    <h1>Hello {{jsonText}}!</h1>
+    <h2>{{getJsonString(jsonText)}}</h2>
+</div>
+<script>
+    var value = {
+        array:[1 , 2 , true],
+        obj:{vet:true},
+//	array : [1, true, "three"],
+        id:"user"}
+
+    //console.log(_.pairs(value));
+</script>
+</body>
+</html>

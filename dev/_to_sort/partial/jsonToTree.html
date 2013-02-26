@@ -1,0 +1,13 @@
+<!-- parent.html -->
+<div id="parent.html" ng-controller="DevController">
+    <ul>{{node}}</ul>
+    <ng-include src="child.html" ng-show="node.children.length > 0"
+                ng-model="node.children" ng-repeat="node in node.children">
+        fake
+    </ng-include>
+</div>
+
+<!-- child.html -->
+<li type="text/ng-template" id="child.html" ng-model="node">
+    {id}
+</li>

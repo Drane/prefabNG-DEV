@@ -1,0 +1,56 @@
+<!doctype html>
+<html ng-app>
+<head>
+    <link rel="stylesheet" href="dev.css">
+    <script src="/app/lib/angular/angular.js"></script>
+    <script src="devcontroller.js"></script>
+</head>
+<body>
+<h1>DEV</h1>
+
+<script type="text/ng-template" id="nodeLeaf.html">
+    <!-- node.html -->
+    <li class="node">{{$parent.key}}:{{$parent.value}}</li>
+</script>
+<script type="text/ng-template" id="nodeArray.html">
+    <!-- nodeArray.html -->
+    nodeArray {{$parent.value}}:
+    <!--<div ng-include src="'node.html'"></div>-->
+    <div ng-repeat="value in $parent.value">
+        <div ng-include src="'node.html'">
+    </div>
+</script>
+<script type="text/ng-template" id="nodeObject.html">
+    <!-- nodeObject.html -->
+    nodeObject {{$parent.key}}:
+    <!--<div ng-include src="'node.html'"></div>-->
+</script>
+<script type="text/ng-template" id="node.html">
+    1 node parent {{$parent}}<br/>
+    1.1 node parent.value {{$parent.value}}<br/>
+    2 node scope {{$scope}}<br/>
+    3 node key {{key}}<br/>
+    4 node value {{value}}<br/>
+    <ul class="subtree" ng-repeat="(key, value) in $parent.value" ng-show="isObjectNotArray($parent.value)">
+        <li ng-include src="'nodeObject.html'" ></li>
+    </ul>
+    <div class="subtree" ng-show="isArray($parent.value)">
+        <ul>
+            <li>
+                {{$parent.key}}:
+            </li>
+            <!--<div ng-repeat="(key, value) in $parent.value" >-->
+                <div ng-include src="'nodeArray.html'" ></div>
+            <!--</div>-->
+        </ul>
+    </div>
+    <ul ng-include src="'nodeLeaf.html'"  ng-show="isNotArrayOrObject($parent.value)"></ul>
+</script>
+<div ng-controller="DevController">
+    <!--MISSCHINE DIE REPEAST BINNEN DIE BOVENSTE SCRIPT DINGER ZWIEREN?-->
+    <div ng-include src="'node.html'" ng-repeat="(key, value) in value"></div>
+</div>
+
+
+</body>
+</html>

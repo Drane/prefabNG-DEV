@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="jsPlumbDemo.css"/>
+    <link rel="stylesheet" href="flowchartDemo.css"/>
+    <link rel="stylesheet" href="draggableConnectorsDemo.css"/>
+    <!--<link rel="stylesheet" href="jquery-ui-1.8.14.custom.css"/>-->
+    <link rel="stylesheet" href="demo.css"/>
+    <!--<body data-demo-id="draggableConnectorsDemo" data-library="jquery"><div id="demo">
+        <div class="window" id="window1">one<br/><br/><a href="#" class="cmdLink hide" rel="window1">toggle connections</a><br/><a href="#" class="cmdLink drag" rel="window1">disable dragging</a><br/><a href="#" class="cmdLink detach" rel="window1">detach all</a></div>
+        <div class="window" id="window2">two<br/><br/><a href="#" class="cmdLink hide" rel="window2">toggle connections</a><br/><a href="#" class="cmdLink drag" rel="window2">disable dragging</a><br/><a href="#" class="cmdLink detach" rel="window2">detach all</a></div>-->
+<body data-demo-id="draggableConnectorsDemo" data-library="jquery">
+<div id="demo">
+    <div class="window ui-draggable" id="window1">one<br id="jsPlumb_1_21"><br id="jsPlumb_1_22"><a href="#" class="cmdLink hide isDraggable" rel="window1" id="jsPlumb_1_23">toggle connections</a><br id="jsPlumb_1_24"><a href="#" class="cmdLink drag" rel="window1" id="jsPlumb_1_25">disable dragging</a><br id="jsPlumb_1_26"><a href="#" class="cmdLink detach" rel="window1" id="jsPlumb_1_27">detach all</a></div>
+    <div class="window ui-draggable" id="window2">two<br id="jsPlumb_1_28"><br id="jsPlumb_1_29"><a href="#" class="cmdLink hide isDraggable" rel="window2" id="jsPlumb_1_30">toggle connections</a><br id="jsPlumb_1_31"><a href="#" class="cmdLink drag" rel="window2" id="jsPlumb_1_32">disable dragging</a><br id="jsPlumb_1_33"><a href="#" class="cmdLink detach" rel="window2" id="jsPlumb_1_34">detach all</a></div>
+    <div class="window ui-draggable" id="window3">three<br id="jsPlumb_1_35"><br id="jsPlumb_1_36"><a href="#" class="cmdLink hide isDraggable" rel="window3" id="jsPlumb_1_37">toggle connections</a><br id="jsPlumb_1_38"><a href="#" class="cmdLink drag" rel="window3" id="jsPlumb_1_39">disable dragging</a><br id="jsPlumb_1_40"><a href="#" class="cmdLink detach" rel="window3" id="jsPlumb_1_41">detach all</a></div>
+    <div class="window ui-draggable" id="draggable">four<br id="jsPlumb_1_42"><br id="jsPlumb_1_43"><a href="#" class="cmdLink hide isDraggable" rel="window4" id="jsPlumb_1_44">toggle connections</a><br id="jsPlumb_1_45"><a href="#" class="cmdLink drag" rel="window4" id="jsPlumb_1_46">disable dragging</a><br id="jsPlumb_1_47"><a href="#" class="cmdLink detach" rel="window4" id="jsPlumb_1_48">detach all</a></div>
+    <div style="position: absolute; height: 30px; width: 30px; left: 169.2333221435547px; top: 179.75px;" class="_jsPlumb_endpoint  ui-draggable ui-droppable"><svg style="position:absolute;left:0px;top:0px" width="30" height="30" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><circle cx="15" cy="15" r="15" version="1.1" xmlns="http://www.w3.org/1999/xhtml" style="" fill="#316b31" stroke="none"></circle></svg></div><div style="position: absolute; height: 21px; width: 25px; left: 235.7333221435547px; top: 90.65px;" class="_jsPlumb_endpoint  ui-draggable ui-droppable"><svg style="position:absolute;left:0px;top:0px" width="25" height="21" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><rect width="25" height="21" version="1.1" xmlns="http://www.w3.org/1999/xhtml" style="" fill="#00f" stroke="none"></rect></svg></div><div style="position: absolute; height: 21px; width: 25px; left: 524.5000152587891px; top: 184.25px;" class="_jsPlumb_endpoint  ui-draggable ui-droppable"><svg style="position:absolute;left:0px;top:0px" width="25" height="21" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><rect width="25" height="21" version="1.1" xmlns="http://www.w3.org/1999/xhtml" style="" fill="#00f" stroke="none"></rect></svg></div><div style="position: absolute; height: 30px; width: 30px; left: 585.5000152587891px; top: 121.25px;" class="_jsPlumb_endpoint  ui-draggable ui-droppable"><svg style="position:absolute;left:0px;top:0px" width="30" height="30" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><circle cx="15" cy="15" r="15" version="1.1" xmlns="http://www.w3.org/1999/xhtml" style="" fill="#316b31" stroke="none"></circle></svg></div><div style="position: absolute; height: 21px; width: 25px; left: 139.7333221435547px; top: 300.53334045410156px;" class="_jsPlumb_endpoint  ui-draggable ui-droppable"><svg style="position:absolute;left:0px;top:0px" width="25" height="21" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><rect width="25" height="21" version="1.1" xmlns="http://www.w3.org/1999/xhtml" style="" fill="#00f" stroke="none"></rect></svg></div><div style="position: absolute; height: 30px; width: 30px; left: 201.2333221435547px; top: 296.03334045410156px;" class="_jsPlumb_endpoint  ui-draggable ui-droppable"><svg style="position:absolute;left:0px;top:0px" width="30" height="30" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><circle cx="15" cy="15" r="15" version="1.1" xmlns="http://www.w3.org/1999/xhtml" style="" fill="#316b31" stroke="none"></circle></svg></div><div style="position: absolute; height: 21px; width: 25px; left: 588.0000152587891px; top: 359.03334045410156px;" class="_jsPlumb_endpoint  ui-draggable ui-droppable"><svg style="position:absolute;left:0px;top:0px" width="25" height="21" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><rect width="25" height="21" version="1.1" xmlns="http://www.w3.org/1999/xhtml" style="" fill="#00f" stroke="none"></rect></svg></div><div style="position: absolute; height: 30px; width: 30px; left: 490.25001525878906px; top: 296.03334045410156px;" class="_jsPlumb_endpoint  ui-draggable ui-droppable"><svg style="position:absolute;left:0px;top:0px" width="30" height="30" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><circle cx="15" cy="15" r="15" version="1.1" xmlns="http://www.w3.org/1999/xhtml" style="" fill="#316b31" stroke="none"></circle></svg></div><div style="position: absolute; height: 34px; width: 34px; left: 103.23332214355469px; top: 177.75px;" class="_jsPlumb_endpoint  ui-draggable ui-droppable"><svg style="position:absolute;left:0px;top:0px" width="34" height="34" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><circle cx="17" cy="17" r="17" version="1.1" xmlns="http://www.w3.org/1999/xhtml" style="" fill="#e5db3d" stroke="none"></circle></svg></div><div style="position: absolute; height: 34px; width: 34px; left: 456.50001525878906px; top: 177.75px;" class="_jsPlumb_endpoint  ui-draggable ui-droppable"><svg style="position:absolute;left:0px;top:0px" width="34" height="34" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><circle cx="17" cy="17" r="17" version="1.1" xmlns="http://www.w3.org/1999/xhtml" style="" fill="#e5db3d" stroke="none"></circle></svg></div><div style="position: absolute; height: 34px; width: 34px; left: 103.23332214355469px; top: 411.03334045410156px;" class="_jsPlumb_endpoint  ui-draggable ui-droppable"><svg style="position:absolute;left:0px;top:0px" width="34" height="34" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><circle cx="17" cy="17" r="17" version="1.1" xmlns="http://www.w3.org/1999/xhtml" style="" fill="#e5db3d" stroke="none"></circle></svg></div><div style="position: absolute; height: 34px; width: 34px; left: 456.50001525878906px; top: 411.03334045410156px;" class="_jsPlumb_endpoint  ui-draggable ui-droppable"><svg style="position:absolute;left:0px;top:0px" width="34" height="34" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><circle cx="17" cy="17" r="17" version="1.1" xmlns="http://www.w3.org/1999/xhtml" style="" fill="#e5db3d" stroke="none"></circle></svg></div></div>4
+<!--<div id="demo">
+    <div class="component window ui-draggable" id="window1">one<br/><br/><a href="#" class="cmdLink hide" rel="window1">toggle connections</a><br/><a href="#" class="cmdLink drag" rel="window1">disable dragging</a><br/><a href="#" class="cmdLink detach" rel="window1">detach all</a></div>
+    <div class="component window ui-draggablee" id="window2">two<br/><br/><a href="#" class="cmdLink hide" rel="window2">toggle connections</a><br/><a href="#" class="cmdLink drag" rel="window2">disable dragging</a><br/><a href="#" class="cmdLink detach" rel="window2">detach all</a></div>
+</div>-->
+
+<script type="text/javascript" src="lib/jsplumb/jquery-1.9.0.js"></script>
+<script type="text/javascript" src="lib/jsplumb/jquery-ui.min.js"></script>
+<script type='text/javascript' src='lib/jsplumb/jquery.ui.touch-punch.min.js'></script>
+<script type="text/javascript" src="lib/jsplumb/jquery.jsPlumb-1.3.6-all-min.js"></script>
+<script type="text/javascript" src="lib/jsplumb/flowchartConnectorsDemo.js"></script>
+<!--<script type="text/javascript" src="app/js/jsplumb/draggableConnectorsDemo.js"></script>
+<script type="text/javascript" src="app/js/jsplumb/draggableConnectorsDemo-jquery.js"></script>-->
+<script type="text/javascript">
+    jsPlumb.ready(function() {
+        var e0 = jsPlumb.addEndpoint("window1"),
+                e1 = jsPlumb.addEndpoint("window2");
+
+        jsPlumb.connect({ source:e0, target:e1 });
+    });
+    $(function() {
+        $( ".isDraggable" ).draggable();
+    });
+</script>
+<script type="text/javascript" src="lib/jsplumb/demo-list.js"></script>
+$( "#draggable" ).draggable({
+connectToSortable: "#sortable",
+helper: "clone",
+revert: "invalid"
+});
+<!--<script type="text/javascript" src="app/js/jsplumb/demo-list.js"></script>
+<script type="text/javascript" src="app/js/jsplumb/demo-helper-jquery.js"></script>-->
+</body>
+</html>

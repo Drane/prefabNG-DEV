@@ -1,0 +1,61 @@
+<!doctype html>
+<html ng-app>
+<head>
+    <link rel="stylesheet" href="../dev.css">
+    <script src="/app/lib/angular/angular.js"></script>
+    <script src="../devcontroller.js"></script>
+    <script src="../../components/jquery/jquery.js"></script>
+    <script src="../../components/jquery.ui/ui/jquery.ui.core.js"></script>
+</head>
+<body>
+<h1>DEV</h1>
+<button onclick="javascript:refresh()">refresh temp</button>
+
+<!-- leaf.html -->
+<script type="text/ng-template" id="leaf.html">
+    <ul>
+        <li>leaf value: {{objectLeaf}} {{isObject(objectLeaf)}}</li>
+    </ul>
+</script>
+
+<!-- objectLeaf.html -->
+<script type="text/ng-template" id="objectLeaf.html">
+    {{log.log('objectLeaf:',objectLeaf);}}
+    <ul>
+        <li>{{key}}</li>
+    </ul>
+    <ng-include ng-src="'leaf.html'" ng-show="isNotArrayOrObject(objectLeaf)" />
+    <ng-include ng-src="'child.html'" ng-repeat="value in objectLeaf" />
+</script>
+
+<!-- arrayLeaf.html -->
+<script type="text/ng-template" id="arrayLeaf.html">
+    {{log.log('arrayLeaf:',arrayLeaf);}}
+    <ng-include ng-src="'child.html'" ng-repeat="data in $parent.data" />
+    <ng-include ng-src="'leaf.html'" ng-show="isNotArrayOrObject(arrayLeaf)" />
+</script>
+
+<!-- child.html -->
+<script type="text/ng-template" id="child.html">
+{{log.log('child.html data:',data)}}
+<!--
+VIA CONTROLLE TEMPLATE PROBERNE FIXEN
+-->
+        <ng-include src="'arrayLeaf.html'" ng-show="isArray(data)"
+                    ng-repeat="arrayLeaf in $parent.data" />
+        <ng-include src="'objectLeaf.html'" ng-show="isObjectNotArray(data)"
+                    ng-repeat="(key, data) in $parent.data" />
+</script>
+
+<div ng-controller="DevController">
+    <!-- parent.html -->
+    <div id="parent.html" ng-controller="DevController"  style="background-color: #ff0000">
+        <ul>
+            <ng-include src="'child.html'" />
+        </ul>
+    </div>
+</div>
+
+
+</body>
+</html>

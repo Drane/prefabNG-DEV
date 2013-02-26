@@ -1,0 +1,35 @@
+<!doctype html>
+<html ng-app>
+<head>
+    <link rel="stylesheet" href="../dev.css">
+    <script src="/app/lib/angular/angular.js"></script>
+    <script src="../devcontroller.js"></script>
+    <script src="../../components/jquery/jquery.js"></script>
+    <script src="../../components/jquery.ui/ui/jquery.ui.core.js"></script>
+</head>
+<body>
+<h1>DEV</h1>
+<button onclick="javascript:refresh()">refresh temp</button>
+<!-- child.html -->
+<script type="text/ng-template" id="child.html">
+    <ul>
+    <li>{{data.id}}</li>
+        <ng-include src="'child.html'" ng-show="data.children"
+                    ng-model="data.children" ng-repeat="data in data.children" />
+    </ul>
+</script>
+
+<div ng-controller="DevController">
+    <!-- parent.html -->
+    <div id="parent.html" ng-controller="DevController"  style="background-color: #ff0000">
+        <ul>
+            <li>{{data.id}}</li>
+            <ng-include src="'child.html'"  ng-show="data.children"
+                        ng-model="data.children" ng-repeat="data in data.children" />
+        </ul>
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html ng-app>
+<head>
+    <link rel="stylesheet" href="../dev.css">
+    <script src="/app/lib/angular/angular.js"></script>
+    <script src="../devcontroller.js"></script>
+    <script src="../../components/jquery/jquery.js"></script>
+    <script src="../../components/jquery.ui/ui/jquery.ui.core.js"></script>
+</head>
+<body>
+<h1>DEV</h1>
+<button onclick="javascript:refresh()">refresh temp</button>
+
+
+<!-- leaf.html -->
+<script type="text/ng-template" id="leaf.html">
+    <ul>
+    <li>leaf value: {{value}} {{isObject(value)}}</li>
+    </ul>
+</script>
+<!-- arrayLeaf.html -->
+<script type="text/ng-template" id="objectLeaf.html">
+    {{log.log('arrayLeaf.html key:',key,'value:',value,'value is array',isArray(value),'value is object',isObjectNotArray(value))}}
+    <ul>
+
+    <li ng-hide="isArray(arrayLeaf)">objectLeaf value: {{objectValue}} {{isObject(objectValue)}}</li>
+        <ng-include src="'arrayLeaf.html'" ng-show="isArray(objectValue)"
+                    ng-repeat="arrayValue in objectValue" />
+        <ng-include src="'objectLeaf.html'" ng-show="!isArray(objectValue) && isObject(objectValue)"
+                    ng-repeat="objectValue in objectValue" />
+        <!--<ng-include src="'arrayLeaf.html'" ng-show="isArray(value)"
+                    ng-repeat="value in value" />
+        <ng-include src="'leaf.html'" ng-hide="isArray(value)"/>-->
+    </ul>
+</script>
+<!-- arrayLeaf.html -->
+<script type="text/ng-template" id="arrayLeaf.html">
+    {{log.log('arrayLeaf.html key:',key,'value:',value,'value is array',isArray(value),'value is object',isObjectNotArray(value))}}
+    <ul>
+        <li ng-hide="isArray(arrayLeaf)">arrayLeaf value: {{arrayValue}} {{isArray(arrayValue)}}</li>
+        <ng-include src="'objectLeaf.html'" ng-show="isObjectNotArray(arrayLeaf)"
+                    ng-repeat="objectValue in arrayLeaf" />
+        <ng-include src="'arrayLeaf.html'" ng-show="isArray(arrayLeaf)"
+                    ng-repeat="arrayValue in arrayLeaf" />
+        <!--<ng-include src="'arrayLeaf.html'" ng-show="isArray(value)"
+                    ng-repeat="value in value" />
+        <ng-include src="'leaf.html'" ng-hide="isArray(value)"/>-->
+    </ul>
+</script>
+<!-- child.html -->
+<script type="text/ng-template" id="child.html">
+    {{log.log('child.html key:',key,'value:',value,'value is array',isArray(value),'value is object',isObjectNotArray(value))}}
+    <ul>
+
+    <li ng-show="key">key: {{key}} isArray:{{isArray(value)}}</li>
+    <!--<li ng-hide="key">arrayLeaf value: {{value}} {{isArray(value)}}</li>-->
+        <ng-include src="'objectLeaf.html'" ng-show="isObjectNotArray(arrayLeaf)"
+                    ng-repeat="objectValue in arrayLeaf" />
+        <ng-include src="'arrayLeaf.html'" ng-show="isArray(value)"
+                    ng-repeat="arrayValue in value" />
+        <ng-include src="'leaf.html'" ng-hide="isArray(value)"/>
+
+    </ul>
+</script>
+
+<div ng-controller="DevController">
+    <!-- parent.html -->
+    <div id="parent.html" ng-controller="DevController"  style="background-color: #ff0000">
+        <ul>
+            <li>{{data.id}}</li>
+            <ng-include src="'child.html'"
+                        ng-repeat="(key, value) in data" />
+        </ul>
+    </div>
+</div>
+
+
+</body>
+</html>

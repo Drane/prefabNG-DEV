@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+Raphael.fn.jnode = function(x, y, label){
+this.dragger = function () {
+this.ox = this.type == "rect" ? this.attr("x") : this.attr("cx");
+this.oy = this.type == "rect" ? this.attr("y") : this.attr("cy");
+this.animate({"fill-opacity": .2}, 500);
+}
+this.move = function (dx, dy) {
+var att = this.type == "rect" ? {x: this.ox + dx, y: this.oy + dy} : {cx: this.ox + dx, cy: this.oy + dy};
+this.attr(att);
+for (var i = connections.length; i--;) {
+r.connection(connections[i]);
+}
+r.safari();
+};
+this.up = function () {
+this.animate({"fill-opacity": 0}, 500);
+}
+
+var color = Raphael.getColor();
+
+
+
+this.add([{
+type: "rect",
+x: x-35,
+y: y-15,
+width: 70,
+height: 30,
+stroke: "#f00"
+}]).attr({fill: color, stroke: color, "fill-opacity": 0, "stroke-width": 2, cursor: "move"}).drag(this.move, this.dragger, this.up);;
+
+this.add([{
+type: "text",
+x: x,
+y: y,
+text: label
+}]);
+};
+
+paper.jnode(100, 100, 'test');
+</body>
+</html>

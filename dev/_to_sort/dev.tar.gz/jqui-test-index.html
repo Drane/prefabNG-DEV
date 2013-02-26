@@ -1,0 +1,27 @@
+<!doctype html>
+<html ng-app="myModule">
+<head>
+    <link rel="stylesheet" href="../components/angular-ui/build/angular-ui.css">
+    <link rel="stylesheet" href="../components/fullcalendar-1.5.4/fullcalendar/fullcalendar.css">
+    <link rel="stylesheet" href="../components/codemirror/codemirror.css">
+    <link rel="stylesheet" href="dev.css">
+    <script src="../components/jquery/jquery.js"></script>
+    <script src="../components/jquery.ui/ui/jquery.ui.core.js"></script>
+    <script src="../app/lib/angular/angular.js"></script>
+    <script src="../components/angular-ui/build/angular-ui.js"></script>
+    <script src="jquicontroller.js"></script>
+    <script src="../components/fullcalendar-1.5.4/fullcalendar/fullcalendar.js"></script>
+    <script src="../components/codemirror/codemirror.js"></script>
+</head>
+<body>
+<button>TEST</button>
+<div ng-controller="JquiController" ng-model="data.id">
+    <h1 class="ui:draggable">DEV</h1>
+    {{data}}<br/><br/>
+    <textarea ui-codemirror="{theme:'monokai'}" ng-model="codeMirrorModel"></textarea>
+    <div ui-calendar="{height: 450,editable: true}" class="span8 calendar" ng-model="events"></div>
+</div>
+
+
+</body>
+</html>

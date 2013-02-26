@@ -1,0 +1,123 @@
+<!doctype html>
+<html ng-app="ngNodeTreeApp">
+<head>
+    <script src="/app/lib/angular/angular.js"></script>
+    <script src="devcontroller.js"></script>
+    <script src="../components/ui-bootstrap/ui-bootstrap-tpls-0.1.0.js"></script>
+    <link rel="stylesheet" href="dev.css">
+    <link href="../components/ui-bootstrap/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="../components/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="dev.css">
+</head>
+<body>
+<h1>DEV</h1>
+
+<script type="text/ng-template" id="nodeLeaf.html">
+    <!-- nodeLeaf.html -->
+    <span ng-controller="NodeEditController">
+        <span ng:hide="editorEnabled" ng:click="enableEditor()">
+            <b>{{$parent.key}}</b> : {{$parent.value}}
+        </span>
+        <form ng:show="editorEnabled">
+            <input class="input-mini" placeholder="Key" type="text" size="2" ng:required ng-model="key"/>
+            :
+            <input class="input-mini" placeholder="Value" type="text" size="2" ng:required ng-model="value"/>
+            <!-- <div class="form-actions">-->
+            <button class="btn btn-mini btn-primary" ng-click="save()">
+                <i class="icon-save icon-white"></i>
+            </button>
+            <button type="button" class="btn btn-mini" ng-click="disableEditor()">
+                <i class="icon-undo icon-white"></i>
+            </button>
+            <!--</div>-->
+        </form>
+    </span>
+</script>
+
+<script type="text/ng-template" id="arrayLeaf.html">
+    <!-- arrayLeaf.html -->
+    <span ng-controller="NodeEditController">
+        <span ng:hide="editorEnabled" ng:click="enableEditor()">
+            <b>{{$parent.key}}</b> : {{$parent.value}}
+        </span>
+        <form ng:show="editorEnabled">
+            <b>{{$parent.key}}</b>
+            :
+            <input class="input-mini" placeholder="Value" type="text" size="2" ng:required ng-model="value" autofocus="true"/>
+            <!-- <div class="form-actions">-->
+            <button class="btn btn-mini btn-primary" ng-click="save()">
+                <i class="icon-save icon-white"></i>
+            </button>
+            <button type="button" class="btn btn-mini" ng-click="disableEditor()">
+                <i class="icon-undo icon-white"></i>
+            </button>
+            <!--</div>-->
+        </form>
+    </span>
+</script>
+
+<script type="text/ng-template" id="objectLeaf.html">
+    <!-- objectLeaf.html -->
+    <span ng-controller="NodeEditController">
+        <span ng:hide="editorEnabled" ng:click="enableEditor()">
+            <b>{{$parent.key}}</b> : {{$parent.value}}
+        </span>
+        <form ng:show="editorEnabled">
+            <input class="input-mini" placeholder="Key" type="text" size="2" ng:required ng-model="key"/>
+            :
+            <input class="input-mini" placeholder="Value" type="text" size="2" ng:required ng-model="value"/>
+            <!-- <div class="form-actions">-->
+            <button class="btn btn-mini btn-primary" ng-click="save()">
+                <i class="icon-save icon-white"></i>
+            </button>
+            <button type="button" class="btn btn-mini" ng-click="disableEditor()">
+                <i class="icon-undo icon-white"></i>
+            </button>
+            <!--</div>-->
+        </form>
+    </span>
+</script>
+
+
+<script type="text/ng-template" id="nodeArrayChild.html">
+        <!-- nodeArray.html -->
+    {{$parent.key}} [{{$parent.value.length}}]:
+    <button class="btn btn-mini btn-primary" ng-click="add($parent.value)" ng-controller="NodeEditController">
+        <i class="icon-plus-sign icon-white"></i>
+    </button>
+    <button class="btn btn-mini btn-danger" ng-click="remove($parent.key)" ng-controller="NodeEditController">
+        <i class="icon-trash icon-white"></i>
+    </button>
+    <ul class="arrayList subtree" ng-repeat="(key, value) in $parent.value"
+        ng-include src="getRootNode('array')"></ul>
+</script>
+
+
+<script type="text/ng-template" id="nodeObjectChild.html">
+    <!-- nodeObject.html -->
+    {{$parent.key}} <span ng:non-bindable>{</span>{{countObjectProperties($parent.value)}}<span ng:non-bindable>}</span>:
+    <button class="btn btn-mini btn-primary" ng-click="add($parent.value)" ng-controller="NodeEditController">
+        <i class="icon-plus-sign icon-white"></i>
+    </button>
+    <button class="btn btn-mini btn-danger" ng-click="remove($parent.key)" ng-controller="NodeEditController">
+        <i class="icon-trash icon-white"></i>
+    </button>
+    <ul class="objectList subtree" ng-repeat="(key, value) in $parent.value" ng-include src="getRootNode('object')"></ul>
+</script>
+
+<script type="text/ng-template" id="node.html">
+    <!--$parent.parentType:{{getParentType()}} key {{$parent.key}} value {{$parent.value}}-->
+    <!--node parent.value {{$parent.value}} node key {{key}} => node value {{value}}<br/>-->
+    <li ng-include src="getTemplate($parent.value)"></li>
+</script>
+
+<div ng-controller="DevController">
+    <ul>
+        <ng-include class="subtree" ng-include src="getRootNode()" ng-repeat="(key, value) in value"></ng-include>
+    </ul>
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html ng-app="bootstrapDemoApp">
+<head>
+    <script src="../app/lib/angular/angular.js"></script>
+    <script src="../components/ui-bootstrap/ui-bootstrap-tpls-0.1.0.js"></script>
+    <link rel="stylesheet" href="dev.css">
+    <link href="../components/ui-bootstrap/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="../components/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <script src="bootcontroller.js"></script>
+    <style>
+       body {font-family:FontAwesome}
+       p{font-family:FontAwesome}
+    </style>
+</head>
+<body>
+<h1>DEV</h1>
+<button>TEST</button>
+<div ng-controller="BootDemoCtrl">
+    <p><i class="icon-camera-retro icon-large"></i> icon-camera-retro</p>
+    test data : {{data}}
+
+    <label class="checkbox">
+        <input type="checkbox" ng-model="oneAtATime">
+        Open only one at a time:
+    </label>
+
+    <accordion close-others="oneAtATime">
+        <accordion-group heading="Static Header">
+            This content is straight in the template.
+        </accordion-group>
+        <accordion-group heading="{{group.title}}" ng-repeat="group in groups">
+            {{group.content}}
+        </accordion-group>
+        <accordion-group heading="Dynamic Body Content">
+            <p>The body of the accordion group grows to fit the contents</p>
+            <button class="btn btn-small" ng-click="addItem()">Add Item</button>
+            <div ng-repeat="item in items">{{item}}</div>
+        </accordion-group>
+    </accordion>
+</div>
+
+
+</body>
+</html>

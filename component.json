@@ -1,0 +1,14 @@
+{
+    "name":"prefabNG-DEV",
+    "version":"0.0.0",
+    "ignore":[
+        "**/.*",
+        "node_modules",
+        "components"
+    ],
+    "dependencies":{
+        "font-awesome":"~3.0.2",
+        "jquery":"~1.9.1",
+        "jquery.ui":"~1.10.0"
+    }
+}

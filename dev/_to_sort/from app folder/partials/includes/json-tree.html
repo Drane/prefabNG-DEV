@@ -1,0 +1,21 @@
+<!-- parent.html -->
+<script type="text/ng-template" id="parent.html">
+    content of template1.html
+</script>
+
+<!-- template2.html -->
+<script type="text/ng-template" id="template2.html">
+    <p ng-class="color">content of template2.html</p>
+</script>
+
+
+<ul ui:sortable id="tree-view">{{json.id}}
+    <button ng-click="add(json)">+</button>
+    <button ng-click="delete(json)" ng-show="json.children.length > 0">-</button>
+    <li ng-repeat="child in json.children">
+        {{child.id}}
+        <ng-include src="tree-view" ng-show="json.children.length > 0" ng-model="json.children"></ng-include>
+    </li>
+</ul>
+
+
