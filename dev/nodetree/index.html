@@ -6,6 +6,15 @@
     <link href="../../app/lib/ui-bootstrap/bootstrap-combined.min.css" rel="stylesheet">
     <link href="../../components/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style type="text/css">
+        .node-tree{
+            float: left;
+            width: 50%;
+        }
+        pre{
+            float: right;
+        }
+    </style>
 </head>
 <body>
 
@@ -13,8 +22,15 @@
 <div ng-app="app">
 
     <div ng-controller="AppCtrl">
-        <pre style="float: left;">jsonNode: {{data.jsonNode | json}}</pre>
-        <pre style="float: right;">wrapped jsonNode: {{data.jsonNode | jsonNodeWrapper | json}}</pre>
+        <div class="node-tree"  style="float: left;">
+            {
+            id : "first",
+            array : [1, 2, 3],
+            obj : {bool : true, str : "name"}
+            }
+        </div>
+        <pre>jsonNode: {{data.jsonNode | json}}</pre>
+        <pre>wrapped jsonNode: {{data.jsonNode | jsonNodeWrapper | json}}</pre>
     </div>
 
 </div>

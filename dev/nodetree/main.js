@@ -47,6 +47,18 @@ app.filter('objectToArray', function () {
     };
 });
 
-function AppCtrl($scope, objectJsonNode) {
+app.controller("AppCtrl",function($scope, objectJsonNode) {
     $scope.data = {jsonNode:objectJsonNode };
-}
+});
+
+app.directive('nodeTree', function () {
+    return {
+        restrict: 'C',
+        template: '<textarea rows="10" cols="10"></textarea>',
+        transclude: true,
+        replace: true,
+        controller: function($scope, $element, $transclude) {
+            $element.append($transclude().contents());
+        }
+    }
+});
