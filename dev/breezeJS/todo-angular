@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="next" href="/samples/todo-require" />
+<link rel="shortcut icon" href="http://www.breezejs.com/sites/all/files/favicon_0.ico" type="image/vnd.microsoft.icon" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+<link rel="up" href="/samples/todo" />
+<link rel="prev" href="/samples/todo-knockout" />
+<meta name="Generator" content="Drupal 7 (http://drupal.org)" />
+<link rel="canonical" href="/samples/todo-angular" />
+<link rel="shortlink" href="/node/99" />
+  <title>Todo-Angular | Breeze.js</title>  
+  <style type="text/css" media="all">@import url("http://www.breezejs.com/modules/system/system.base.css?mhim0f");
+@import url("http://www.breezejs.com/modules/system/system.menus.css?mhim0f");
+@import url("http://www.breezejs.com/modules/system/system.messages.css?mhim0f");
+@import url("http://www.breezejs.com/modules/system/system.theme.css?mhim0f");</style>
+<style type="text/css" media="all">@import url("http://www.breezejs.com/modules/aggregator/aggregator.css?mhim0f");
+@import url("http://www.breezejs.com/modules/book/book.css?mhim0f");
+@import url("http://www.breezejs.com/modules/comment/comment.css?mhim0f");
+@import url("http://www.breezejs.com/modules/field/theme/field.css?mhim0f");
+@import url("http://www.breezejs.com/modules/node/node.css?mhim0f");
+@import url("http://www.breezejs.com/modules/search/search.css?mhim0f");
+@import url("http://www.breezejs.com/modules/user/user.css?mhim0f");
+@import url("http://www.breezejs.com/sites/all/modules/views/css/views.css?mhim0f");</style>
+<style type="text/css" media="all">@import url("http://www.breezejs.com/sites/all/modules/ckeditor/ckeditor.css?mhim0f");
+@import url("http://www.breezejs.com/sites/all/modules/ctools/css/ctools.css?mhim0f");
+@import url("http://www.breezejs.com/sites/all/modules/nice_menus/nice_menus.css?mhim0f");
+@import url("http://www.breezejs.com/sites/all/modules/nice_menus/nice_menus_default.css?mhim0f");
+@import url("http://www.breezejs.com/sites/all/libraries/syntaxhighlighter_3.0.83/styles/shCore.css?mhim0f");
+@import url("http://www.breezejs.com/sites/all/libraries/syntaxhighlighter_3.0.83/styles/shThemeDefault.css?mhim0f");
+@import url("http://www.breezejs.com/sites/all/modules/views_slideshow/views_slideshow.css?mhim0f");</style>
+<style type="text/css" media="all">@import url("http://www.breezejs.com/sites/all/themes/omega/alpha/css/alpha-reset.css?mhim0f");
+@import url("http://www.breezejs.com/sites/all/themes/omega/alpha/css/alpha-mobile.css?mhim0f");
+@import url("http://www.breezejs.com/sites/all/themes/omega/alpha/css/alpha-alpha.css?mhim0f");
+@import url("http://www.breezejs.com/sites/all/themes/omega/omega/css/formalize.css?mhim0f");
+@import url("http://www.breezejs.com/sites/all/themes/omega/omega/css/omega-text.css?mhim0f");
+@import url("http://www.breezejs.com/sites/all/themes/omega/omega/css/omega-branding.css?mhim0f");
+@import url("http://www.breezejs.com/sites/all/themes/omega/omega/css/omega-menu.css?mhim0f");
+@import url("http://www.breezejs.com/sites/all/themes/omega/omega/css/omega-forms.css?mhim0f");
+@import url("http://www.breezejs.com/sites/all/themes/omega/omega/css/omega-visuals.css?mhim0f");
+@import url("http://www.breezejs.com/sites/all/themes/ad_breeze/css/global.css?mhim0f");</style>
+
+<!--[if (lt IE 9)&(!IEMobile)]>
+<style type="text/css" media="all">@import url("http://www.breezejs.com/sites/all/themes/ad_breeze/css/ad-breeze-alpha-default.css?mhim0f");
+@import url("http://www.breezejs.com/sites/all/themes/ad_breeze/css/ad-breeze-alpha-default-normal.css?mhim0f");
+@import url("http://www.breezejs.com/sites/all/themes/omega/alpha/css/grid/alpha_default/normal/alpha-default-normal-12.css?mhim0f");</style>
+<![endif]-->
+
+<!--[if gte IE 9]><!-->
+<style type="text/css" media="all and (min-width: 740px) and (min-device-width: 740px), (max-device-width: 800px) and (min-width: 740px) and (orientation:landscape)">@import url("http://www.breezejs.com/sites/all/themes/ad_breeze/css/ad-breeze-alpha-default.css?mhim0f");
+@import url("http://www.breezejs.com/sites/all/themes/ad_breeze/css/ad-breeze-alpha-default-narrow.css?mhim0f");
+@import url("http://www.breezejs.com/sites/all/themes/omega/alpha/css/grid/alpha_default/narrow/alpha-default-narrow-12.css?mhim0f");</style>
+<!--<![endif]-->
+
+<!--[if gte IE 9]><!-->
+<style type="text/css" media="all and (min-width: 980px) and (min-device-width: 980px), all and (max-device-width: 1024px) and (min-width: 1024px) and (orientation:landscape)">@import url("http://www.breezejs.com/sites/all/themes/ad_breeze/css/ad-breeze-alpha-default.css?mhim0f");
+@import url("http://www.breezejs.com/sites/all/themes/ad_breeze/css/ad-breeze-alpha-default-normal.css?mhim0f");
+@import url("http://www.breezejs.com/sites/all/themes/omega/alpha/css/grid/alpha_default/normal/alpha-default-normal-12.css?mhim0f");</style>
+<!--<![endif]-->
+
+<!--[if gte IE 9]><!-->
+<style type="text/css" media="all and (min-width: 1220px)">@import url("http://www.breezejs.com/sites/all/themes/ad_breeze/css/ad-breeze-alpha-default.css?mhim0f");
+@import url("http://www.breezejs.com/sites/all/themes/ad_breeze/css/ad-breeze-alpha-default-wide.css?mhim0f");
+@import url("http://www.breezejs.com/sites/all/themes/omega/alpha/css/grid/alpha_default/wide/alpha-default-wide-12.css?mhim0f");</style>
+<!--<![endif]-->
+  <script type="text/javascript" src="http://www.breezejs.com/misc/jquery.js?v=1.4.4"></script>
+<script type="text/javascript" src="http://www.breezejs.com/misc/jquery.once.js?v=1.2"></script>
+<script type="text/javascript" src="http://www.breezejs.com/misc/drupal.js?mhim0f"></script>
+<script type="text/javascript" src="http://www.breezejs.com/sites/all/libraries/syntaxhighlighter_3.0.83/scripts/shCore.js?mhim0f"></script>
+<script type="text/javascript" src="http://www.breezejs.com/sites/all/libraries/syntaxhighlighter_3.0.83/scripts/shBrushCSharp.js?mhim0f"></script>
+<script type="text/javascript" src="http://www.breezejs.com/sites/all/libraries/syntaxhighlighter_3.0.83/scripts/shBrushJScript.js?mhim0f"></script>
+<script type="text/javascript" src="http://www.breezejs.com/sites/all/libraries/syntaxhighlighter_3.0.83/scripts/shBrushXml.js?mhim0f"></script>
+<script type="text/javascript" src="http://www.breezejs.com/sites/all/modules/nice_menus/superfish/js/superfish.js?mhim0f"></script>
+<script type="text/javascript" src="http://www.breezejs.com/sites/all/modules/nice_menus/superfish/js/jquery.bgiframe.min.js?mhim0f"></script>
+<script type="text/javascript" src="http://www.breezejs.com/sites/all/modules/nice_menus/superfish/js/jquery.hoverIntent.minified.js?mhim0f"></script>
+<script type="text/javascript" src="http://www.breezejs.com/sites/all/modules/nice_menus/nice_menus.js?mhim0f"></script>
+<script type="text/javascript" src="http://www.breezejs.com/sites/all/modules/views_slideshow/js/views_slideshow.js?mhim0f"></script>
+<script type="text/javascript" src="http://www.breezejs.com/sites/all/modules/google_analytics/googleanalytics.js?mhim0f"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-34729465-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+<script type="text/javascript" src="http://www.breezejs.com/sites/all/themes/omega/omega/js/jquery.formalize.js?mhim0f"></script>
+<script type="text/javascript" src="http://www.breezejs.com/sites/all/themes/omega/omega/js/omega-mediaqueries.js?mhim0f"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"ad_breeze","theme_token":"KChk_rbyy5m2AcKfzq3VwAFAuCJOZGzf1e9oHn9wHcg","js":{"sites\/all\/modules\/syntaxhighlighter\/syntaxhighlighter.min.js":1,"misc\/jquery.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"sites\/all\/libraries\/syntaxhighlighter_3.0.83\/scripts\/shCore.js":1,"sites\/all\/libraries\/syntaxhighlighter_3.0.83\/scripts\/shBrushCSharp.js":1,"sites\/all\/libraries\/syntaxhighlighter_3.0.83\/scripts\/shBrushJScript.js":1,"sites\/all\/libraries\/syntaxhighlighter_3.0.83\/scripts\/shBrushXml.js":1,"sites\/all\/modules\/nice_menus\/superfish\/js\/superfish.js":1,"sites\/all\/modules\/nice_menus\/superfish\/js\/jquery.bgiframe.min.js":1,"sites\/all\/modules\/nice_menus\/superfish\/js\/jquery.hoverIntent.minified.js":1,"sites\/all\/modules\/nice_menus\/nice_menus.js":1,"sites\/all\/modules\/views_slideshow\/js\/views_slideshow.js":1,"sites\/all\/modules\/google_analytics\/googleanalytics.js":1,"0":1,"sites\/all\/themes\/omega\/omega\/js\/jquery.formalize.js":1,"sites\/all\/themes\/omega\/omega\/js\/omega-mediaqueries.js":1},"css":{"modules\/system\/system.base.css":1,"modules\/system\/system.menus.css":1,"modules\/system\/system.messages.css":1,"modules\/system\/system.theme.css":1,"modules\/aggregator\/aggregator.css":1,"modules\/book\/book.css":1,"modules\/comment\/comment.css":1,"modules\/field\/theme\/field.css":1,"modules\/node\/node.css":1,"modules\/search\/search.css":1,"modules\/user\/user.css":1,"sites\/all\/modules\/views\/css\/views.css":1,"sites\/all\/modules\/ckeditor\/ckeditor.css":1,"sites\/all\/modules\/ctools\/css\/ctools.css":1,"sites\/all\/modules\/nice_menus\/nice_menus.css":1,"sites\/all\/modules\/nice_menus\/nice_menus_default.css":1,"sites\/all\/libraries\/syntaxhighlighter_3.0.83\/styles\/shCore.css":1,"sites\/all\/libraries\/syntaxhighlighter_3.0.83\/styles\/shThemeDefault.css":1,"sites\/all\/modules\/views_slideshow\/views_slideshow.css":1,"sites\/all\/themes\/omega\/alpha\/css\/alpha-reset.css":1,"sites\/all\/themes\/omega\/alpha\/css\/alpha-mobile.css":1,"sites\/all\/themes\/omega\/alpha\/css\/alpha-alpha.css":1,"sites\/all\/themes\/omega\/omega\/css\/formalize.css":1,"sites\/all\/themes\/omega\/omega\/css\/omega-text.css":1,"sites\/all\/themes\/omega\/omega\/css\/omega-branding.css":1,"sites\/all\/themes\/omega\/omega\/css\/omega-menu.css":1,"sites\/all\/themes\/omega\/omega\/css\/omega-forms.css":1,"sites\/all\/themes\/omega\/omega\/css\/omega-visuals.css":1,"sites\/all\/themes\/ad_breeze\/css\/global.css":1,"ie::normal::sites\/all\/themes\/ad_breeze\/css\/ad-breeze-alpha-default.css":1,"ie::normal::sites\/all\/themes\/ad_breeze\/css\/ad-breeze-alpha-default-normal.css":1,"ie::normal::sites\/all\/themes\/omega\/alpha\/css\/grid\/alpha_default\/normal\/alpha-default-normal-12.css":1,"narrow::sites\/all\/themes\/ad_breeze\/css\/ad-breeze-alpha-default.css":1,"narrow::sites\/all\/themes\/ad_breeze\/css\/ad-breeze-alpha-default-narrow.css":1,"sites\/all\/themes\/omega\/alpha\/css\/grid\/alpha_default\/narrow\/alpha-default-narrow-12.css":1,"normal::sites\/all\/themes\/ad_breeze\/css\/ad-breeze-alpha-default.css":1,"normal::sites\/all\/themes\/ad_breeze\/css\/ad-breeze-alpha-default-normal.css":1,"sites\/all\/themes\/omega\/alpha\/css\/grid\/alpha_default\/normal\/alpha-default-normal-12.css":1,"wide::sites\/all\/themes\/ad_breeze\/css\/ad-breeze-alpha-default.css":1,"wide::sites\/all\/themes\/ad_breeze\/css\/ad-breeze-alpha-default-wide.css":1,"sites\/all\/themes\/omega\/alpha\/css\/grid\/alpha_default\/wide\/alpha-default-wide-12.css":1}},"nice_menus_options":{"delay":"800","speed":"fast"},"googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"},"omega":{"layouts":{"primary":"normal","order":["narrow","normal","wide"],"queries":{"narrow":"all and (min-width: 740px) and (min-device-width: 740px), (max-device-width: 800px) and (min-width: 740px) and (orientation:landscape)","normal":"all and (min-width: 980px) and (min-device-width: 980px), all and (max-device-width: 1024px) and (min-width: 1024px) and (orientation:landscape)","wide":"all and (min-width: 1220px)"}}}});
+//--><!]]>
+</script>
+  <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body class="html not-front not-logged-in page-node page-node- page-node-99 node-type-book context-samples">
+  <div id="skip-link">
+    <a href="#main-content" class="element-invisible element-focusable">Skip to main content</a>
+  </div>
+    <div class="page clearfix" id="page">
+      <header id="section-header" class="section section-header">
+  <div id="zone-branding-wrapper" class="zone-wrapper zone-branding-wrapper clearfix">  
+  <div id="zone-branding" class="zone zone-branding clearfix container-12">
+    <div class="grid-12 region region-branding" id="region-branding">
+  <div class="region-inner region-branding-inner">
+          </div>
+</div>  </div>
+</div><div id="zone-menu-wrapper" class="zone-wrapper zone-menu-wrapper clearfix">  
+  <div id="zone-menu" class="zone zone-menu clearfix container-12">
+    <div class="grid-12 region region-menu" id="region-menu">
+  <div class="region-inner region-menu-inner">
+          </div>
+</div>
+  </div>
+</div><div id="zone-header-wrapper" class="zone-wrapper zone-header-wrapper clearfix">  
+  <div id="zone-header" class="zone zone-header clearfix container-12">
+    <div class="grid-2 region region-header-first" id="region-header-first">
+  <div class="region-inner region-header-first-inner">
+    <div class="block block-block block-2 block-block-2 odd block-without-title" id="block-block-2">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <div class="logo">
+	<a href="/home"><img src="/sites/all/themes/breeze/images/logo.png" /></a></div>
+    </div>
+  </div>
+</div>  </div>
+</div><div class="grid-10 region region-header-second" id="region-header-second">
+  <div class="region-inner region-header-second-inner">
+    <div class="block block-block block-1 block-block-1 odd block-without-title" id="block-block-1">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <div class="primary-nav">
+	<ul>
+		<li>
+			<a href="/documentation/download">Download</a></li>
+		<li>
+			<a href="http://learn.breezejs.com" target="_blank">Tutorials</a></li>
+		<li>
+			<a href="/documentation/introduction">Docs</a></li>
+		<li>
+			<a href="/samples">Samples</a></li>
+		<li>
+			<a href="/sites/all/apidocs/index.html" target="_blank">API</a></li>
+		<li>
+			<a href="http://stackoverflow.com/questions/tagged/breeze?sort=newest" target="_blank">Forum</a></li>
+		<li>
+			<a href="/support">Support</a></li>
+<li>
+			<a href="/blog">Blog</a></li>
+	</ul>
+</div>
+    </div>
+  </div>
+</div>  </div>
+</div>  </div>
+</div></header>    
+      <section id="section-content" class="section section-content">
+  <div id="zone-content-wrapper" class="zone-wrapper zone-content-wrapper clearfix">  
+  <div id="zone-content" class="zone zone-content clearfix container-12">    
+        
+        <aside class="grid-3 region region-sidebar-first" id="region-sidebar-first">
+  <div class="region-inner region-sidebar-first-inner">
+    <section class="block block-menu-block block-4 block-menu-block-4 odd" id="block-menu-block-4">
+  <div class="block-inner clearfix">
+              <h2 class="block-title">Samples</h2>
+            
+    <div class="content clearfix">
+      <div class="menu-block-wrapper menu-block-4 menu-name-book-toc-7 parent-mlid-348 menu-level-1">
+  <ul class="menu"><li class="first expanded active-trail menu-mlid-349"><a href="/samples/todo" class="active-trail">Todo</a><ul class="menu"><li class="first leaf menu-mlid-560"><a href="/samples/todo-knockout">Todo-Knockout</a></li>
+<li class="leaf active-trail active menu-mlid-561"><a href="/samples/todo-angular" class="active-trail active">Todo-Angular</a></li>
+<li class="last leaf menu-mlid-562"><a href="/samples/todo-require">Todo-Require</a></li>
+</ul></li>
+<li class="leaf menu-mlid-513"><a href="/samples/breezy-devices">Breezy Devices</a></li>
+<li class="leaf menu-mlid-499"><a href="/samples/doccode">DocCode</a></li>
+<li class="leaf menu-mlid-525"><a href="/samples/car-bones">Car Bones</a></li>
+<li class="leaf menu-mlid-582"><a href="/samples/nodb">NoDb</a></li>
+<li class="leaf menu-mlid-629"><a href="/samples/hot-towel-template">Hot Towel template</a></li>
+<li class="last leaf menu-mlid-630"><a href="/samples/breezeknockout-template">Breeze/Knockout template</a></li>
+</ul></div>
+    </div>
+  </div>
+</section>  </div>
+</aside><div class="grid-9 region region-content" id="region-content">
+  <div class="region-inner region-content-inner">
+    <a id="main-content"></a>
+                        <div class="block block-system block-main block-system-main odd block-without-title" id="block-system-main">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <article class="node node-book node-published node-not-promoted node-not-sticky author-ward odd clearfix" id="node-book-99">
+            
+  
+  <div class="content clearfix">
+    <div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div class="field-item even"><h1>
+	Todo-Angular Sample</h1>
+<p><img alt="Angular.js" src="http://www.breezejs.com/sites/all/images/angular-logo.png" style="margin: 0 20px 20px 0; width: 93px; height: 99px; float: left;" />The Todo-Angular sample demonstrates Breeze and <a href="http://angularjs.org/" target="_blank">AngularJS</a> working together in a single page CRUD (Create/Read/Update/Delete) application.</p>
+<br clear="all" />
+<p class="note">Check out John Lantz&#39;s <a href="http://www.codeproject.com/Articles/528262/Data-with-Angular-js" target="_blank">CodeProject article</a> describing this sample.</p>
+<p>The <a href="/samples/todo/#TodoUx" target="_blank">user experience</a> is the same for this and <a href="/samples/todo">all Todo Sample</a> variations. The source lies within the &quot;Samples&quot; package which you can <a href="/documentation/download" target="_blank">download here</a>.</p>
+<h2>
+	<img alt="" src="http://www.breezejs.com/sites/all//images/Todo-AngularRunning.png" style="width: 568px; height: 422px;" /></h2>
+<p class="note">Todo-Angular runs in modern browsers such as IE9, IE10, and recent Chrome, Safari, Firefox, and WebKit browsers. Breeze does not support AngularJS apps running in older browsers that lack ECMAScript 5 property getters and setters.</p>
+<h2>
+	App Architecture</h2>
+<p>Todo is the simplest full-CRUD app we could think of. The architecture is deliberately primitive and simplistic. There&#39;s only one model type (<em>TodoItem</em>) and only one screen. It&#39;s all about the mechanics of manipulating data and presenting them for user review and edit.<br />
+	<br />
+	The entire app is organized in a single .NET web application project that hosts both server-side and client-side components. The three items outlined in red are the client; everything else is server-side.</p>
+<p><img alt="" src="http://www.breezejs.com/sites/all//images/documentation/Todo-AngularSolution.png" style="border: 0px; margin: 0px; padding: 0px; outline: 0px; font-size: 16px; vertical-align: bottom; font: inherit; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68);" /></p>
+<h3>
+	Server</h3>
+<p>The server is a simple ASP.NET Web Application. It hosts the client-side assets (HTML, CSS, and JavaScript). It also hosts an ASP.NET Web API service consisting of a single Breeze-styled Web API controller in front of an Entity Framework &quot;Code First&quot; model talking to a SQL Server database.<br />
+	<br />
+	The server is identical across all Todo sample variations.</p>
+<h3>
+	Client</h3>
+<p>There are no client-side .NET dependencies: no ASP.MVC, no Razor, just pure CSS, HTML, and JavaScript.<br />
+	<br />
+	The <em>Content </em>folder holds CSS files, the <em>Scripts </em>folder holds 3rd party and application JavaScript libraries; the application libraries are within an inner <em>App </em>folder. The <em>index.html</em> file holds all HTML.<br />
+	<br />
+	We divide the client app into four functional areas:</p>
+<p><img alt="" height="483" src="http://www.breezejs.com/sites/all//images/documentation/Todo-AngularStack.png" width="415" /></p>
+<table style="border-collapse: collapse; margin: 0px 0px 20px 1em; padding: 0px; border: 1px solid rgb(204, 204, 204); outline: 0px; font-size: 13px; vertical-align: baseline; font: inherit; border-spacing: 0px; width: 669px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 19px; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(241, 241, 241); max-width: 400px;">
+	<thead style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 13px; vertical-align: top; font: inherit; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68);">
+		<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 13px; vertical-align: baseline; font: inherit; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68);">
+			<th style="border-width: 0px 0px 1px; border-bottom-style: solid; border-bottom-color: rgb(204, 204, 204); padding: 4px 8px; text-align: left; margin: 0px; outline: 0px; font-size: 13px; vertical-align: middle; font: inherit; background-color: rgb(247, 247, 247); color: rgb(51, 51, 51); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; width: 7em; background-position: initial initial; background-repeat: initial initial;">
+				Area</th>
+			<th style="border-width: 0px 0px 1px; border-bottom-style: solid; border-bottom-color: rgb(204, 204, 204); padding: 4px 8px; text-align: left; margin: 0px; outline: 0px; font-size: 13px; vertical-align: middle; font: inherit; background-color: rgb(247, 247, 247); color: rgb(51, 51, 51); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-position: initial initial; background-repeat: initial initial;">
+				Comment</th>
+		</tr>
+	</thead>
+	<tbody style="border: 0px; margin: 0px; padding: 0px; outline: 0px; font-size: 13px; vertical-align: baseline; font: inherit; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68);">
+		<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 13px; vertical-align: top; font: inherit; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68);">
+			<td style="margin: 0px; padding: 4px 8px; border: 0px; outline: 0px; font-size: 13px; vertical-align: top; font: inherit; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68);">
+				Layout</td>
+			<td style="margin: 0px; padding: 4px 8px 10px; border: 0px; outline: 0px; font-size: 13px; vertical-align: middle; font: inherit; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68);">
+				<em style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 13px; vertical-align: baseline; font: inherit; font-style: italic; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68);">Index.html</em><span class="Apple-converted-space">&nbsp;</span>contains the &quot;View&quot; HTML with<span class="Apple-converted-space">&nbsp;</span><em style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 13px; vertical-align: baseline; font: inherit; font-style: italic; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68);">AngularJS</em><span class="Apple-converted-space">&nbsp;</span>data binding markup. It&#39;s also the application host page with css and script tags.</td>
+		</tr>
+		<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 13px; vertical-align: top; font: inherit; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68);">
+			<td style="margin: 0px; padding: 4px 8px; border: 0px; outline: 0px; font-size: 13px; vertical-align: top; font: inherit; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68);">
+				Presentation<br />
+				Logic</td>
+			<td style="margin: 0px; padding: 4px 8px 10px; border: 0px; outline: 0px; font-size: 13px; vertical-align: middle; font: inherit; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68);">
+				JavaScript in the<span class="Apple-converted-space">&nbsp;</span><em style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 13px; vertical-align: baseline; font: inherit; font-style: italic; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68);">controller.js</em><span class="Apple-converted-space">&nbsp;</span>exposes data and method binding points to the view. All <em style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 13px; vertical-align: baseline; font: inherit; font-style: italic; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68);">AngularJS</em><span class="Apple-converted-space">&nbsp;</span>code lives here. Many of the methods implement CRUD actions by delegating to methods of the service layer.</td>
+		</tr>
+		<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 13px; vertical-align: top; font: inherit; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68);">
+			<td style="margin: 0px; padding: 4px 8px; border: 0px; outline: 0px; font-size: 13px; vertical-align: top; font: inherit; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68);">
+				Model &amp;<br />
+				Data Access</td>
+			<td style="margin: 0px; padding: 4px 8px 10px; border: 0px; outline: 0px; font-size: 13px; vertical-align: middle; font: inherit; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68);">
+				JavaScript in the<span class="Apple-converted-space">&nbsp;</span><em style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 13px; vertical-align: baseline; font: inherit; font-style: italic; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68);">dataservice.js</em><span class="Apple-converted-space">&nbsp;</span>creates, queries, deletes, and saves entities using<span class="Apple-converted-space">&nbsp;</span><em style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 13px; vertical-align: baseline; font: inherit; font-style: italic; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68);">BreezeJS</em>. All<span class="Apple-converted-space">&nbsp;</span><em style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 13px; vertical-align: baseline; font: inherit; font-style: italic; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68);">BreezeJS</em><span class="Apple-converted-space">&nbsp;</span>code lives here.</td>
+		</tr>
+		<tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 13px; vertical-align: top; font: inherit; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68);">
+			<td style="margin: 0px; padding: 4px 8px; border: 0px; outline: 0px; font-size: 13px; vertical-align: top; font: inherit; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68);">
+				Logging</td>
+			<td style="margin: 0px; padding: 4px 8px 10px; border: 0px; outline: 0px; font-size: 13px; vertical-align: middle; font: inherit; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68);">
+				The<span class="Apple-converted-space">&nbsp;</span><em style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 13px; vertical-align: baseline; font: inherit; font-style: italic; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68);">logger.js</em><span class="Apple-converted-space">&nbsp;</span>presents activity messages and errors as &quot;toasts&quot; popping from the lower right via the<span class="Apple-converted-space">&nbsp;</span><em style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 13px; vertical-align: baseline; font: inherit; font-style: italic; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(68, 68, 68);">toastr.js</em><span class="Apple-converted-space">&nbsp;</span>3rd party library.</td>
+		</tr>
+	</tbody>
+</table>
+<h2>
+	Angular highlights</h2>
+<p>We assume you&#39;re acquainted with <a href="http://angularjs.org/" target="_blank">AngularJS</a> and that the markup in <em>index.html</em> and the JavaScript programming model are familiar to you.</p>
+<h2>
+	View</h2>
+<p>The Todo app&#39;s&nbsp; &quot;View&quot; is embedded in <em>index.html</em>. You&#39;ll recognize the way Angular markup binds buttons to actions, value attributes to data properties, CSS classes to controller properties, and repeats Todo items within a list using an &lt;li&gt; tag template.</p>
+<p>The &quot;data-ng-app&quot; attribute references the &quot;TodoMain&quot; module; the &quot;data-ng-controller&quot; attribute references the &quot;TodoCtrl&quot; controller module.</p>
+<p>Here&#39;s an excerpt showing the TodoItem template within the &lt;li&gt; tag:</p>
+<pre class="brush:xml;">
+&lt;li data-ng-repeat=&quot;item in items&quot;&gt;
+    &lt;!-- readonly view --&gt;
+    &lt;div data-ng-show=&quot;!(item.isEditing)&quot;&gt;
+	&lt;input type=&quot;checkbox&quot; 
+               data-ng-model=&quot;item.IsDone&quot; 
+               data-ng-class=&quot;{done: item.IsDone}&quot; /&gt;
+	&lt;label data-ng-click=&quot;edit(item)&quot; 
+               data-ng-class=&quot;{done: item.IsDone, archived: item.IsArchived}&quot; &gt;
+           {{item.Description}}
+        &lt;/label&gt;
+	&lt;a href=&quot;#&quot; data-ng-click=&quot;removeItem(item)&quot;&gt;X&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;!-- edit view --&gt;
+    &lt;div data-ng-show=&quot;item.isEditing&quot;&gt;
+	&lt;form data-ng-submit=&quot;completeEdit(item)&quot;&gt;
+	    &lt;input type=&quot;text&quot; 
+                   data-ng-model=&quot;item.Description&quot; 
+                   data-on-blur=&quot;completeEdit(item)&quot; 
+                   data-focus-when=&quot;item.isEditing&quot; /&gt;
+	&lt;/form&gt;
+    &lt;/div&gt;
+&lt;/li&gt;</pre>
+<p>We&#39;re using the HTML &quot;data-&quot; prefix for attributes that Angular recognizes as its &quot;directives&quot;.</p>
+<h2>
+	Controller</h2>
+<p>All AngularJS-related JavaScript is in the <em>Scripts/app/controller.js</em> file. Both the &quot;TodoMain&quot; module and the &quot;TodoCtrl&quot; controller module are in this file.</p>
+<h3>
+	TodoMain Directives</h3>
+<p>The <em>TodoMain </em>module defines custom application &quot;directives&quot; that bind controller actions to state changes of an HTML tag.<br />
+	<br />
+	For example, the &quot;onBlur&quot; directive binds the TodoItem <em>Description</em>&#39;s textbox to the <em>completeEdit </em>controller method; the <em>completeEdit </em>method is called when the textbox loses focus. The &quot;focusWhen&quot; directive watches the bound item&#39;s <em>isEditing </em>property; when it becomes true, the directive sets the focus on the TodoItem <em>Description</em>&#39;s textbox (after a brief delay to let the browser DOM settle down).<br />
+	<br />
+	The &quot;onFocus&quot; directive complements the &quot;onBlur&quot; directive; although it isn&#39;t used, it&#39;s there for completeness.</p>
+<h3>
+	TodoCtrl</h3>
+<p>The <em>TodoCtrl </em>module controls the &quot;Todo&quot; view - the presentation of Todo items to the user.<br />
+	<br />
+	At runtime the module definition function receives an Angular-supplied <em>$scope</em> object. This function adds properties and methods to <em>$scope</em> and Angular then binds them to the view within <em>index.html</em>.<br />
+	<br />
+	This controller is written in the style of a &quot;ViewModel&quot; per the MVVM pattern. The controller has no references to view elements. Its properties and methods are virtually identical to the &quot;viewmodel&quot; implementations of the Knockout Todo samples. The <a href="/samples/todo-viewmodel" target="_blank">Todo ViewModel Sample Design</a> topic provides all essential details of this controller&#39;s implementation.</p>
+<h2>
+	Dataservice</h2>
+<p>The <em>dataservice.js</em> file handles the creation of new Todo objects and all interactions with the server. It&#39;s written in Breeze and almost all Breeze-related code is in this <em>dataservice</em>. See the &quot;<a href="/samples/todo-dataservice">Todo Sample Dataservice</a>&quot; page for details.</p>
+<p>The only difference ... and it is a critical difference ... is a single line of Breeze configuration near the top of the file</p>
+<pre class="brush:jscript;">
+breeze.config.initializeAdapterInstance(&quot;modelLibrary&quot;, &quot;backingStore&quot;, true);</pre>
+<p>It tells Breeze which library to use when it creates or materializes JavaScript &quot;model&quot; objects. For an Angular application you use the native Breeze model library called &quot;<em><strong>backingStore</strong></em>&quot;.</p>
+<h2>
+	Logger</h2>
+<p>The <em>logger.js</em> file is an abstraction for logging messages and displaying them to the user. Internally it uses the open source <a href="https://github.com/CodeSeven/toastr" target="_blank">toastr</a> library to display messages as &quot;toasts&quot; that float up from the bottom right of the screen.</p>
+<p>This file is identical across all Todo sample variations.</p>
+<p><a href="/samples/todo">Back to the main Todo Sample page</a></p>
+</div></div></div>  <div id="book-navigation-7" class="book-navigation">
+    
+        <div class="page-links clearfix">
+              <a href="/samples/todo-knockout" class="page-previous" title="Go to previous page">‹ Todo-Knockout</a>
+                    <a href="/samples/todo" class="page-up" title="Go to parent page">up</a>
+                    <a href="/samples/todo-require" class="page-next" title="Go to next page">Todo-Require ›</a>
+          </div>
+    
+  </div>
+  </div>
+  
+  <div class="clearfix">
+          <nav class="links node-links clearfix"></nav>
+    
+      </div>
+</article>    </div>
+  </div>
+</div><div class="block block-block block-8 block-block-8 even block-without-title" id="block-block-8">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <script type="text/javascript">
+    var _elqQ = _elqQ || [];
+    _elqQ.push(['elqSetSiteId', '1020']);
+    _elqQ.push(['elqTrackPageView']);
+    
+    (function () {
+        function async_load() {
+            var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;
+            s.src = '//img.en25.com/i/elqCfg.min.js';
+            var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+        }
+        if (window.addEventListener) window.addEventListener('DOMContentLoaded', async_load, false);
+        else if (window.attachEvent) window.attachEvent('onload', async_load); 
+    })();
+</script>
+    </div>
+  </div>
+</div><div class="block block-block block-7 block-block-7 odd block-without-title" id="block-block-7">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <script type="text/javascript">
+  var uvOptions = {};
+  (function() {
+    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/GHug452CgVREu58xjoDg.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+  })();
+</script>    </div>
+  </div>
+</div>      </div>
+</div>  </div>
+</div></section>    
+  
+      <footer id="section-footer" class="section section-footer">
+  <div id="zone-footer-wrapper" class="zone-wrapper zone-footer-wrapper clearfix">  
+  <div id="zone-footer" class="zone zone-footer clearfix container-12">
+    <div class="grid-12 region region-footer-first" id="region-footer-first">
+  <div class="region-inner region-footer-first-inner">
+    <div class="block block-block block-3 block-block-3 odd block-without-title" id="block-block-3">
+  <div class="block-inner clearfix">
+                
+    <div class="content clearfix">
+      <div id="copyright">
+	<p><strong>&copy; BreezeJS 2013</strong></p>
+</div>
+<div id="mit">
+	<p><a href="http://opensource.org/licenses/mit-license.php" target="_blank"><img alt="MIT" src="/sites/all/themes/breeze/images/mit.png" /></a> <a href="http://opensource.org/licenses/mit-license.php" target="_blank">free &amp; open source</a></p>
+</div>
+<div class="primary-nav-foot">
+	<ul>
+		<li>
+			<a href="/documentation/download">Download</a></li>
+		<li>
+			<a href="http://learn.breezejs.com/" target="_blank">Tutorials</a></li>
+		<li>
+			<a href="/documentation/introduction">Docs</a></li>
+		<li>
+			<a href="/samples">Samples</a></li>
+		<li>
+			<a href="/sites/all/apidocs/index.html" target="_blank">API</a></li>
+		<li>
+			<a href="http://stackoverflow.com/questions/tagged/breeze?sort=newest" target="_blank">Forum</a></li>
+		<li>
+			<a href="/support">Support</a></li>
+		<li>
+			<a href="/blog">Blog</a></li>
+	</ul>
+</div>
+<p>&nbsp;</p>
+    </div>
+  </div>
+</div>  </div>
+</div>  </div>
+</div></footer>  </div>  <script type="text/javascript" src="http://www.breezejs.com/sites/all/modules/syntaxhighlighter/syntaxhighlighter.min.js?mhim0f"></script>
+</body>
+</html>

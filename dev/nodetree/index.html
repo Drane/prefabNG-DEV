@@ -22,21 +22,26 @@
 <div ng-app="app">
 
     <div ng-controller="AppCtrl">
-        <div class="node-tree"  style="float: left;">
-            {
-            id : "first",
-            array : [1, 2, 3],
-            obj : {bool : true, str : "name"}
-            }
-        </div>
-        <pre>jsonNode: {{data.jsonNode | json}}</pre>
-        <pre>wrapped jsonNode: {{data.jsonNode | jsonNodeWrapper | json}}</pre>
+        <x-ps-estr>string</x-ps-estr>
+        <br/><br/>
+        <!--<x-ps-ebool id="id666">true</x-ps-ebool>-->
+        <x-ps-ebool key="selected" value="true">true</x-ps-ebool>
     </div>
 
 </div>
 
 <script src="../../app/lib/angular/angular.js"></script>
 <script src="../../app/lib/ui-bootstrap/ui-bootstrap-tpls-0.1.0.js"></script>
+<script src="../../lib/ps-directives.js"></script>
 <script src="main.js"></script>
+<!-- <div class="node-tree">
+           {
+           id : "first",
+           array : [1, 2, 3],
+           obj : {bool : true, str : "name"}
+           }
+       </div>
+       <pre>jsonNode: {{data.jsonNode | json}}</pre>
+       <pre>wrapped jsonNode: {{data.jsonNode | jsonNodeWrapper | json}}</pre>-->
 </body>
 </html>
