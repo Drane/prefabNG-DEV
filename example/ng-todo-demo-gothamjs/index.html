@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Things To Do</title>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="todo.css">
+  <script src="libs/angular.js"></script>
+  <script src="libs/angular-resource.js"></script>
+  <script src="todo.js"></script>
+</head>
+
+<body class="well" ng-app="todoApp">
+
+<nav>
+  [<a href="#/">Todo</a>] [<a href="#/hello">hello</a>]
+</nav>
+
+<ng-view></ng-view>
+
+</body>
+</html>
+
+<!--
+
+ng-app
+
+ng-app="todo"
+
+ng-controller="AppCtrl"
+
+<ul class="unstyled">
+  <li ng-repeat="item in items" class="done-{{item.done}}">
+    <input type="checkbox" ng-model="item.done"> {{item.text}}</li>
+</ul>
+
+
+<p>
+  Remaining <strong>{{remaining()}}</strong> of <strong>{{items.length}}</strong>.
+  [ <a href ng-click="archive()">archive</a> ]
+</p>
+
+
+<form>
+  <input ng-model="newItem.text">
+  <button ng-disabled="!newText" ng-click="add(newItem) class="btn btn-primary">add</button>
+</form>
+
+
+<form name="newItemForm">
+  <input name="newItemText" ng-model="newText" ng-maxlength="15">
+  <button ng-disabled="!newText" ng-click="add(newItem) class="btn btn-primary">add</button>
+  <span ng-show="addItemForm.newItemText.$error.maxlength">Text too long!</span>
+</form>
+
+
+<input type="checkbox" ng-model="item.done" ng-change="item.$update()"> {{item.text}}</li>
+
+
+-->
+
+
+<!--
+
+<body class="well" ng-app="todoApp" ng-controller="AppCtrl">
+
+<h1>Things To Do</h1>
+
+<p>
+  Remaining <strong>{{remaining()}}</strong> of <strong>{{items.length}}</strong>.
+  [ <a href ng-click="archive()">archive</a> ]
+</p>
+
+<ul class="unstyled">
+  <li ng-repeat="item in items"><input type="checkbox" ng-model="item.done"> {{item.text}}</li>
+</ul>
+
+
+<form name="newItemForm">
+  <input name="newItemText" ng-model="newItem.text" ng-maxlength="15">
+  <button class="btn btn-primary" ng-click="add(newItem)" ng-disabled="!newItem.text">add</button>
+  <span ng-show="newItemForm.newItemText.$error.maxlength">Text too long!</span>
+</form>
+
+</body>
+</html>
+
+-->

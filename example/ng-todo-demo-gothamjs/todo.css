@@ -1,0 +1,12 @@
+.done-true {
+  color: gray;
+  text-decoration: line-through;
+}
+
+nav {
+  padding-bottom: 30px;
+}
+
+input.ng-invalid {
+  border: 3px solid red;
+}
