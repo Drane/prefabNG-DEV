@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="utf-8">
+    <title>Node Tree</title>
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="lib/angular/angular.js"></script>
+    <script src="js/controllers.js"></script>
+</head>
+<body ng-controller="NodeCtrl">
+<script type="text/ng-template" id="node.html">
+    <li>key: {{$parent.key}}</li>
+    <ul ng-repeat="(key, value) in value" ng-show="value.length>0">
+        <ng-include src="'node.html'"></ng-include>
+    </ul>
+</script>
+<ul>
+    <ng-include src="'node.html'" ng-repeat="(key, value) in node"></ng-include>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<html ng-app="treeExam" ng-controller="treeController">
+<head>
+    <meta charset="utf-8">
+    <title>Directive Example</title>
+
+    <script src="http://code.angularjs.org/1.1.0/angular.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript" charset="utf-8">
+        //어플리케이션 모듈을 선언하고, Directive를 인젝션한다.
+        var directiveExam = angular.module('treeExam', ['euTree.directive']);
+
+        directiveExam.controller('treeController', ['$scope', function ($scope) {
+
+            $scope.roleList =
+                    [
+                        {
+                            "roleName":"User",
+                            "roleId":"role1",
+                            "children":[
+                                {
+                                    "roleName":"subUser1",
+                                    "roleId":"role11",
+                                    "children":[]
+                                },
+                                {
+                                    "roleName":"subUser2",
+                                    "roleId":"role12",
+                                    "children":[
+                                        {
+                                            "roleName":"subUser2-1",
+                                            "roleId":"role121",
+                                            "children":[
+                                                {
+                                                    "roleName":"subUser2-1-1",
+                                                    "roleId":"role1211",
+                                                    "children":[]
+                                                },
+                                                {
+                                                    "roleName":"subUser2-1-2",
+                                                    "roleId":"role1212",
+                                                    "children":[]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "roleName":"Admin",
+                            "roleId":"role2",
+                            "children":[]
+                        }
+                    ];
+
+        }]);
+
+    </script>
+
+</head>
+<body>
+<!--
+[TREE attribute]
+tree-data : the tree model on $scope (ex: "$scope.roleList" in this html file)
+node-id : each node's id
+node-name : each node's name
+node-state : expand/collapse - node's default state
+
+expand-icon, collapse-icon, child-icon : icon image file URL
+
+** 트리 요소를 선택할 때마다 'nodeSelected' 라는 이름으로 브로드캐스트하므로,
+** 'nodeSelected' 라는 이름으로 $on으로 브로드캐스트를 받아서 args의
+** selectedNode의 'node-id' 값을 통해 필요한 처리를 해줄 수 있다.
+-->
+<eu-tree
+        tree-data="roleList"
+        node-id="roleId"
+        node-name="roleName"
+        node-state="collapse"
+
+        expand-icon="http://cfile23.uf.tistory.com/image/205B973A50C13F4B19D9BD"
+        collapse-icon="http://cfile23.uf.tistory.com/image/1459193A50C13F4B1B05FB"
+        child-icon="http://cfile23.uf.tistory.com/image/165B663A50C13F4B196CCA"></eu-tree>
+<script src="main.js"></script>
+</body>
+</html>
