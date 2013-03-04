@@ -67,29 +67,43 @@ app.directive('psNode', function ($compile) {
 //			console.log('psNode attrs:',scope['type']);
 			scope.node = scope.value;
 //			scope.getType = scope.$parent.getType;
+			scope.getLength = scope.$parent.getLength;
 
 			function getType(value) {
 				console.log('getType: ', value);
 				return "node";
 			}
-
-
-
 			if(typeof scope.node === "boolean"){
 				console.log('psNode boolean scope.node:',scope.node);
 				var template = angular.element('<span> : </span><ps-boolean-node value="{{node}}"></ps-boolean-node>');
 				var linkFunction = $compile(template);
 				linkFunction(scope);
 				element.replaceWith(template);
-
-			}else if(angular.isString(scope.node)){
+			}else if(angular.isNumber(scope.node)){
+                console.log('psNode number scope.node:',scope.node);
+                var template = angular.element('<span> : </span><ps-number-node value="{{node}}"></ps-number-node>');
+                var linkFunction = $compile(template);
+                linkFunction(scope);
+                element.replaceWith(template);
+            }else if(angular.isString(scope.node)){
 				console.log('psNode string scope.node:',scope.node);
 				var template = angular.element('<span> : </span><ps-string-node value="{{node}}"></ps-string-node>');
 				var linkFunction = $compile(template);
 				linkFunction(scope);
 				element.replaceWith(template);
-
-			}else{
+			}else if(angular.isArray(scope.node)){
+                console.log('psNode array scope.node:',scope.node);
+                var template = angular.element('<span> : </span><ps-array-node node="node"></ps-array-node>');
+                var linkFunction = $compile(template);
+                linkFunction(scope);
+                element.replaceWith(template);
+            }else if(angular.isObject(scope.node)){
+                console.log('psNode object scope.node:',scope.node);
+                var template = angular.element('<span> : </span><ps-object-node node="node"></ps-object-node>');
+                var linkFunction = $compile(template);
+                linkFunction(scope);
+                element.replaceWith(template);
+            }else{
 				console.log('psNode non-string scope.node:',scope.node);
 				var template = angular.element('<ul>\n    ' +
 					'<li ng-repeat="(key, value) in node">' +
@@ -106,15 +120,26 @@ app.directive('psNode', function ($compile) {
 	};
 });
 app.directive('psBooleanNode', function ($compile) {
-	console.log('psStringNode');
+	console.log('psBooleanNode');
 	return {
 		restrict:'E', //Element
 		scope:{
 			value:"@"
 		},
 		replace: true,
-		template: '<span>{{value}}</span>'
+		template: '<span>{{value}} (Boolean)</span>'
 	};
+});
+app.directive('psNumberNode', function ($compile) {
+    console.log('psNumberNode');
+    return {
+        restrict:'E', //Element
+        scope:{
+            value:"@"
+        },
+        replace: true,
+        template: '<span>{{value}} (Number)</span>'
+    };
 });
 app.directive('psStringNode', function ($compile) {
 	console.log('psStringNode');
@@ -124,7 +149,81 @@ app.directive('psStringNode', function ($compile) {
 			value:"@"
 		},
 		replace: true,
-		template: '<span>"{{value}}"</span>'
+		template: '<span>"{{value}}" (String)</span>'
 	};
+});
+
+app.directive('psArrayNode', function ($compile) {
+	console.log('psArrayNode');
+	return {
+		restrict:'E', //Element
+		scope:{
+			node:"="
+		},
+		replace: true,
+//		template: '<span>"{{value}}" (Array)</span>'
+        link:function (scope, element, attrs) {
+            console.log('psArrayNode scope:',scope);
+            console.log('psArrayNode element:',element);
+            console.log('psArrayNode attrs:',attrs);
+
+            var template = angular.element('<span>'+attrs.node+' [' + scope.node.length + ']</span>\n' +
+                    '<ul>\n' +
+                        '<li ng-repeat="(key, value) in node">' +
+                            '{{key}}' +
+                            '<ps-node node="value"></ps-node>' +
+                        '</li>' +
+                    '</ul>' +
+                '</li>' +
+            '</ul>');
+
+            var linkFunction = $compile(template);
+            linkFunction(scope);
+            element.html(null).append(template);
+        }
+	};
+});
+
+app.directive('psObjectNode', function ($compile) {
+    console.log('psObjectNode');
+    return {
+        restrict:'E', //Element
+        scope:{
+            node:"="
+        },
+        replace: true,
+//		template: '<span>"{{value}}" (Array)</span>'
+        link:function (scope, element, attrs) {
+            console.log('psArrayNode scope:',scope);
+            console.log('psArrayNode element:',element);
+            console.log('psArrayNode attrs:',attrs);
+
+            function getObjectLength(object){
+                return object.$$hashKey?Object.keys(scope.node).length-1:Object.keys(scope.node).length;
+            }
+
+            var template = angular.element('<span>'+attrs.node+' {' + getObjectLength(scope.node) + '}</span>\n' +
+                '<ul>\n' +
+                    '<li ng-repeat="(key, value) in node">' +
+                        '{{key}}' +
+                        '<ps-node node="value"></ps-node>' +
+                    '</li>' +
+                '</ul>');
+/*            var template = angular.element('<ul>\n' +
+                '<li>'+attrs.node+' {' + getObjectLength(scope.node) + '}\n' +
+                '<ul>\n' +
+                '<li ng-repeat="(key, value) in node">' +
+                '{{key}}' +
+                '<ps-node node="value"></ps-node>' +
+                '</li>' +
+                '</ul>' +
+                '</li>' +
+                '</ul>');*/
+
+            var linkFunction = $compile(template);
+            linkFunction(scope);
+            element.html(null).append(template);
+        }
+    };
 });
 
