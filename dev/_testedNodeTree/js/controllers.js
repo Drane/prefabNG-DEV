@@ -5,7 +5,8 @@ console.debug('> in controllers.js');
 
 function NodeCtrl($scope) {
 	var node = [
-		"string"
+		"string",
+		true
 	];
 /*	var node = [
 		{"name":"Nexus S",

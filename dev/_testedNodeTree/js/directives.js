@@ -75,9 +75,16 @@ app.directive('psNode', function ($compile) {
 
 
 
-			if(angular.isString(scope.node)){
+			if(typeof scope.node === "boolean"){
+				console.log('psNode boolean scope.node:',scope.node);
+				var template = angular.element('<span> : </span><ps-boolean-node value="{{node}}"></ps-boolean-node>');
+				var linkFunction = $compile(template);
+				linkFunction(scope);
+				element.replaceWith(template);
+
+			}else if(angular.isString(scope.node)){
 				console.log('psNode string scope.node:',scope.node);
-				var template = angular.element('<span> = </span><ps-string-node value="{{node}}"></ps-string-node>');
+				var template = angular.element('<span> : </span><ps-string-node value="{{node}}"></ps-string-node>');
 				var linkFunction = $compile(template);
 				linkFunction(scope);
 				element.replaceWith(template);
@@ -98,7 +105,7 @@ app.directive('psNode', function ($compile) {
 		}
 	};
 });
-app.directive('psStringNode', function ($compile) {
+app.directive('psBooleanNode', function ($compile) {
 	console.log('psStringNode');
 	return {
 		restrict:'E', //Element
@@ -107,6 +114,17 @@ app.directive('psStringNode', function ($compile) {
 		},
 		replace: true,
 		template: '<span>{{value}}</span>'
+	};
+});
+app.directive('psStringNode', function ($compile) {
+	console.log('psStringNode');
+	return {
+		restrict:'E', //Element
+		scope:{
+			value:"@"
+		},
+		replace: true,
+		template: '<span>"{{value}}"</span>'
 	};
 });
 
