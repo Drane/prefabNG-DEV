@@ -11,23 +11,10 @@ app.directive('psNodeTree', function ($compile) {
 //			console.log('psNodeTree attrs:',attrs);
 //			console.log('psNodeTree scope:',scope);
 
-            scope.getType = function(value) {
-                console.log('getType: ', value);
-                var type = "";
-
-                if(typeof value === "boolean"){
-                    type = "boolean";
-                }else if(angular.isNumber(value)){
-                    type = "number";
-                }else if(angular.isString(value)){
-                    type = "string";
-                }else if(angular.isArray(value)){
-                    type = "array";
-                }else if(angular.isObject(value)){
-                    type = "object";
-                }
-                return type+"-type";
-            };
+			scope.getType = function(value) {
+				console.log('getType: ', value);
+				return "node";
+			};
 
 			scope.getLength = function(value){
 				if(angular.isArray(value))
@@ -55,7 +42,7 @@ app.directive('psNodeTree', function ($compile) {
 			var template = angular.element('<ul id="nodeTree">' +
 				'<li>'+attrs.data + scope.getLength(scope[attrs.data]) +
 					'<ul>' +
-						'<li ng-class="getType(value)" ng-repeat="(key, value) in '+attrs.data+'">' +
+						'<li ng-repeat="(key, value) in '+attrs.data+'">' +
 //							'{{key}}' + '{{getLength(key)}}' +
 //							'{{getNode(value)(this)}}' +
 							'<ps-node node="value" type="{{getType(value)}}"></ps-node>' +
@@ -79,7 +66,7 @@ app.directive('psNode', function ($compile) {
 			console.log('psNode attrs:',attrs);
 //			console.log('psNode attrs:',scope['type']);
 			scope.node = scope.value;
-			scope.getType = scope.$parent.getType;
+//			scope.getType = scope.$parent.getType;
 			scope.getLength = scope.$parent.getLength;
 
 			function getType(value) {
@@ -183,7 +170,7 @@ app.directive('psArrayNode', function ($compile) {
 
             var template = angular.element('<span>'+attrs.node+' [' + scope.node.length + ']</span>\n' +
                     '<ul>\n' +
-                        '<li  ng-class="getType(value)" ng-repeat="(key, value) in node">' +
+                        '<li ng-repeat="(key, value) in node">' +
 //                            '{{key}}' +
                             '<ps-node node="value"></ps-node>' +
                         '</li>' +
@@ -218,7 +205,7 @@ app.directive('psObjectNode', function ($compile) {
 
             var template = angular.element('<span>'+attrs.node+' {' + getObjectLength(scope.node) + '}</span>\n' +
                 '<ul>\n' +
-                    '<li ng-class="getType(value)" ng-repeat="(key, value) in node">' +
+                    '<li ng-repeat="(key, value) in node">' +
 //                        '{{key}}' +
                         '<ps-node node="value"></ps-node>' +
                     '</li>' +
