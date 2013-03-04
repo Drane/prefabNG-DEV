@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="utf-8">
+    <title>Node Tree</title>
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="lib/angular/angular.js"></script>
+    <script src="js/controllers.js"></script>
+</head>
+<body ng-controller="NodeCtrl">
+<ul>
+    {{getNode()}}
+    <!--<li ng-repeat="(key, value) in node">
+        &lt;!&ndash;<ng-include src="'node.html'" ></ng-include>&ndash;&gt;
+        {{getNode()}}
+    </li>-->
+</ul>
+</body>
+</html>

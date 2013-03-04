@@ -24,6 +24,8 @@ angular.module('euTree.directive', [])
 		return {
 			restrict:'E', //Element
 			link:function (scope, element, attrs) {
+				console.debug('scope.tree: ',scope.tree);
+				console.debug('scope.node: ',scope.node);
 				scope.tree = scope.node;
 
 				var visibility = ( attrs.nodeState != "collapse" ) || 'style="display: none;"';
@@ -38,7 +40,12 @@ angular.module('euTree.directive', [])
 						}
 					}
 
-					var template = angular.element('<ul ' + visibility + '><li ng-repeat="node in tree.children" node-id={{node.' + attrs.nodeId + '}} ng-class="node.className">{{node.' + attrs.nodeName + '}}<tree-element tree="node" node-id=' + attrs.nodeId + ' node-name=' + attrs.nodeName + ' node-state=' + attrs.nodeState + '></tree-element></li></ul>');
+					var template = angular.element('<ul ' + visibility + '>' +
+						'<li ng-repeat="node in tree.children" node-id={{node.' + attrs.nodeId + '}} ng-class="node.className">' +
+							'{{node.' + attrs.nodeName + '}}' +
+							'<tree-element tree="node" node-id=' + attrs.nodeId + ' node-name=' + attrs.nodeName + ' node-state=' + attrs.nodeState + '></tree-element>' +
+						'</li>' +
+					'</ul>');
 
 					var linkFunction = $compile(template);
 					linkFunction(scope);
@@ -80,7 +87,12 @@ angular.module('euTree.directive', [])
 						}
 					}
 
-					var template = angular.element('<ul id="euTreeBrowser" class="filetree treeview-famfamfam treeview"><li ng-repeat="node in ' + attrs.treeData + '" node-id={{node.' + attrs.nodeId + '}} ng-class="node.className">{{node.' + attrs.nodeName + '}}<tree-element tree="node" node-id=' + attrs.nodeId + ' node-name=' + attrs.nodeName + ' node-state=' + attrs.nodeState + '></tree-element></li></ul>');
+					var template = angular.element('<ul id="euTreeBrowser" class="filetree treeview-famfamfam treeview">' +
+						'<li ng-repeat="node in ' + attrs.treeData + '" node-id={{node.' + attrs.nodeId + '}} ng-class="node.className">' +
+							'{{node.' + attrs.nodeName + '}}' +
+							'<tree-element tree="node" node-id=' + attrs.nodeId + ' node-name=' + attrs.nodeName + ' node-state=' + attrs.nodeState + '></tree-element>' +
+						'</li>' +
+					'</ul>');
 
 					var linkFunction = $compile(template);
 					linkFunction(scope);
