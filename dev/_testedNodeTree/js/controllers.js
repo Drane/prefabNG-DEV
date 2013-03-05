@@ -9,10 +9,10 @@ function NodeCtrl($scope) {
 		true,
         666,
         ["1",2,true],
-        {"obj" : true, "anobjpropnr" : 666}
+        {"obj" : true, "arr":[1,2,3], "anobjpropnr" : 666}
 	];
 	var array = ["1",2,true];
-    $scope.object = {"obj" : true, "anobjpropnr" : 666};
+    $scope.object = {"obj" : true, "anobjpropnr" : 666, "arr":[1,2,3]};
 /*	var node = [
 		{"name":"Nexus S",
 			"snippet":"Fast just got faster with Nexus S."},
@@ -24,6 +24,6 @@ function NodeCtrl($scope) {
 		666
 	];*/
 
-	$scope.node = node;
 	$scope.array = array;
+	$scope.node = node;
 }

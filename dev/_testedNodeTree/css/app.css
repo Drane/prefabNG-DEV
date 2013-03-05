@@ -1,6 +1,51 @@
 /* app css stylesheet */
 
 body {
-  padding-top: 20px;
+    padding-top: 20px;
 }
 
+.leaf {
+    background-color: rgba(169, 137, 255, 0.23);
+    /*font-style: italic;*/
+}
+
+.boolean-node {
+    background-color: #3df2ff;
+}
+
+.number-node {
+    background-color: #fffe2b;
+}
+
+.string-node {
+    background-color: #10ff12;
+}
+
+/*li .boolean-type {
+    list-style-image: url("../img/boolean-icon-small.png");
+}
+
+li .number-type {
+    list-style-image: url("../img/number-icon-small.png");
+}
+
+li .string-type {
+    list-style-image: url("../img/string-icon-small.png");
+}
+
+li .array-type {
+    list-style-image: url("../img/array-icon-small.png");
+}
+
+li .object-type {
+    list-style-image: url("../img/object-icon-small.png");
+}*/
+
+li {
+    list-style: none;
+}
+
+.key {
+    font-weight: bold;
+    /*font-style: italic;*/
+}
