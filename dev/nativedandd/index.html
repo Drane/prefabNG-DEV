@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <script src="js/ba-hooker.js"></script>
+    <title>Native D&D</title>
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="lib/angular/angular.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/directives.js"></script>
+    <style>
+            /* Prevent the text contents of draggable elements from being selectable. */
+        [draggable] {
+            -moz-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .column {
+            height: 30px;
+            width: 100px;
+            float: none;
+            border: 2px solid #666666;
+            background-color: #ccc;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            -webkit-border-radius: 10px;
+            -ms-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 3px #000;
+            -ms-box-shadow: inset 0 0 3px #000;
+            box-shadow: inset 0 0 3px #000;
+            text-align: center;
+            cursor: move;
+
+            -webkit-transition: -webkit-transform .2s ease-out;
+            -moz-transition: -moz-transform .2s ease-out;
+            -o-transition: -o-transform .2s ease-out;
+            -ms-transition: -ms-transform .2s ease-out
+        }
+
+        /*.column header {
+            color: #fff;
+            text-shadow: #000 0 1px;
+            box-shadow: 5px;
+            padding: 5px;
+            background: -moz-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
+            background: -webkit-gradient(linear, left top, right top, color-stop(0, rgb(0, 0, 0)), color-stop(0.50, rgb(79, 79, 79)), color-stop(1, rgb(21, 21, 21)));
+            background: -webkit-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
+            background: -ms-linear-gradient(left center, rgb(0, 0, 0), rgb(79, 79, 79), rgb(21, 21, 21));
+            border-bottom: 1px solid #ddd;
+            -webkit-border-top-left-radius: 10px;
+            -moz-border-radius-topleft: 10px;
+            -ms-border-radius-topleft: 10px;
+            border-top-left-radius: 10px;
+            -webkit-border-top-right-radius: 10px;
+            -ms-border-top-right-radius: 10px;
+            -moz-border-radius-topright: 10px;
+            border-top-right-radius: 10px;
+        }*/
+
+        #columns .column.over, #columns-dragOver .column.over, #columns-dragEnd .column.over, #columns-almostFinal .column.over {
+            border: 2px dashed #000
+        }
+
+        #columns .column.moving {
+            opacity: .25;
+            -webkit-transform: scale(.8);
+            -moz-transform: scale(.8);
+            -ms-transform: scale(.8);
+            -o-transform: scale(.8)
+        }
+
+        #columns .column .count {
+            padding-top: 15px;
+            font-weight: bold;
+            text-shadow: #fff 0 1px
+        }
+    </style>
+</head>
+<body ng-controller="NodeCtrl">
+<ul id="columns">
+<!--    <li ng-repeat="(key, value) in node" class="column" draggable="true">
+        {{key}} => {{value}}
+    </li>-->
+    <li class="column" draggable="true"
+        ps-dragstart="handleDragStart($event)">
+        A<!--<header>A</header>-->
+    </li>
+    <li class="column" ps-draggable>
+        B<!--<header>B</header>-->
+    </li>
+    <li class="column" ps-draggable>
+        C<!--<header>C</header>-->
+    </li>
+</ul>
+
+<script type="text/javascript">
+
+    var dragSrcEl = null;
+
+    /*function handleDragStart(e) {
+        console.debug("handleDragStart event:", e);
+
+        // Target (this) element is the source node.
+        this.style.opacity = '0.4';
+
+        dragSrcEl = this;
+
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/html', this.innerHTML);
+    }*/
+
+    function handleDragOver(e) {
+//console.debug("handleDragOver event:",e);
+        //In the case of dragging something like a link, we need to prevent
+        // the browser's default behavior, which is to navigate to that link.
+        if (e.preventDefault) {
+            e.preventDefault(); // Necessary. Allows us to drop.
+        }
+
+        e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
+
+        return false;
+    }
+
+
+
+    function handleDragLeave(e) {
+        console.debug("handleDragLeave event:", e);
+        this.classList.remove('over');  // this / e.target is previous target element.
+    }
+
+    function handleDrop(e) {
+        console.debug("handleDrop event:", e);
+        // this/e.target is current target element.
+
+        if (e.stopPropagation) {
+            e.stopPropagation(); // Stops some browsers from redirecting.
+        }
+
+        // Don't do anything if dropping the same column we're dragging.
+        if (dragSrcEl != this) {
+            // Set the source column's HTML to the HTML of the column we dropped on.
+            dragSrcEl.innerHTML = this.innerHTML;
+            this.innerHTML = e.dataTransfer.getData('text/html');
+        }
+
+        dragSrcEl.style.opacity='1';
+
+        return false;
+    }
+
+    function handleDragEnd(e) {
+        console.debug("handleDragEnd event:", e);
+        // this/e.target is the source node.
+
+        [].forEach.call(cols, function (col) {
+            col.classList.remove('over');
+        });
+    }
+
+    var cols = document.querySelectorAll('#columns .column');
+    [].forEach.call(cols, function (col) {
+//        col.addEventListener('dragstart', handleDragStart, false);
+        col.addEventListener('dragenter', handleDragEnter, false)
+        col.addEventListener('dragover', handleDragOver, false);
+        col.addEventListener('dragleave', handleDragLeave, false);
+        col.addEventListener('drop', handleDrop, false);
+        col.addEventListener('dragend', handleDragEnd, false);
+    });
+</script>
+</body>
+</html>

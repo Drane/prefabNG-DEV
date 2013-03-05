@@ -5,7 +5,6 @@
     <title>Node Tree</title>
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/sprites.css">
     <link rel="stylesheet" href="../../components/font-awesome/css/font-awesome.min.css">
     <style type="text/css" href="../../app/lib/angular-ui/build/angular-ui.css"></style>
 
@@ -13,7 +12,7 @@
 </head>
 <body ng-controller="NodeCtrl">
 <h1 class="ui-draggable">DEV</h1>
-
+<!--<ps-json-view>{{node}}</ps-json-view>-->
 <pre>node: {{node|json}}</pre>
 <!--
 <ps-boolean-node value="true"></ps-boolean-node><br/>
@@ -24,22 +23,23 @@
 -->
 <!--
 -->
-<ps-node-tree data="node" depth="5"></ps-node-tree>
+<ps-node-tree data="node" depth="5"></ps-node-tree><br/><br/>
+<!--<ps-temp node="node" depth="5"></ps-temp>-->
 
 
-<!--
+<pre>parents: {{parents}}</pre>
 <ul ui-sortable ng-model="parents">
     <li ng-repeat="parent in parents">
         <h3>{{parent.name}}</h3>
-        <ul class="children"
+        <!--<ul class="children"
             ui-sortable="{connectWith:'.children'}"
             ng-model="parent.children">
             <li ng-repeat="child in parent.children">
                 {{child}}
             </li>
-        </ul>
+        </ul>-->
     </li>
-</ul>-->
+</ul>
 
 <script src="../../components/jquery/jquery.js"></script>
 <script src="../../components/jquery.ui/ui/jquery.ui.core.js"></script>
@@ -50,7 +50,6 @@
 <script src="../../components/jquery.ui/ui/jquery.ui.sortable.js"></script>
 <script src="../../app/lib/angular/angular.js"></script>
 <script src="../../app/lib/angular-ui/build/angular-ui.js"></script>
-<script src="../../app/lib/angular-ui/modules/directives/jq"></script>
 <script src="../../app/lib/angular-ui/modules/directives/sortable/sortable.js"></script>
 
 <script src="js/app.js"></script>

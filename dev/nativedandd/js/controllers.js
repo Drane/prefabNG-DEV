@@ -3,11 +3,15 @@
 /* Controllers */
 console.debug('> in controllers.js');
 
-function NodeCtrl($scope) {
+function NodeCtrl($scope, $log) {
+    $log.info('NodeCtrl');
+    $scope.log = $log;
 	var node = [
+        "A", "B", "C"
+        /*
         {name: "a", val: "string"},
         {name: "b", val: "bbb"},
-        {name: "c", val: "ccc"}/*
+        {name: "c", val: "ccc"}
 		true,
         666,
         ["1",2,true],
