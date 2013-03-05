@@ -39,7 +39,7 @@ app.directive('psNodeTree', function ($compile) {
 			attrs.data = "nodeWrap";
 			scope.depth = attrs.depth;
 
-			var template = angular.element('<ul id="nodeTree">' +
+			var template = angular.element('<ul id="nodeTree" ng-model="node" ui-sortable>' +
 				'<li ng-repeat="(key, value) in ' + attrs.data + '" class="{{getType(value)}}">' +
 				'<ps-node></ps-node>' + //class="{{getType(value)}}"
 				'</li>' +
@@ -88,7 +88,7 @@ app.directive('psNode', function ($compile) {
 				 template = angular.element('<i class=" icon-folder-open-alt"></i><span class="key">{{key}}</span><span> </span><ps-array-node node="node" label=""></ps-array-node>');//Array
 				 } else
 				 template = angular.element('<i class="icon-folder-close-alt"></i><span class="key">{{key}}</span><span> </span>');//Array*/
-				template = angular.element('<ps-array-node node="node" label="" toggle="open"></ps-array-node>');
+				template = angular.element('<ps-array-node node="node" label="" toggle="open" depth="depth"></ps-array-node>');
 //				template = angular.element('<span class="key">{{key}}</span><span> </span><ps-array-node node="node" label="" toggle="open"></ps-array-node>');
 
 			} else if (angular.isObject(scope.node)) {
@@ -148,7 +148,7 @@ app.directive('psArrayNode', function ($compile) {
 		scope:{
 			node:"=",
 			//label:'@',
-			depth:'@'
+			depth:'='
 		},
 		replace:true,
 		link:function (scope, element, attrs) {
@@ -163,13 +163,16 @@ app.directive('psArrayNode', function ($compile) {
 			var key = '<span ng-click="toggle()" class="key">{{$parent.key}}</span><span> : </span>';
 			var header = '<span ng-click="toggle()">' + (attrs.label ? attrs.label : '') + ' [' + scope.node.length + ']</span>\n';
 
-			var templateContent = '<span ng-show="open">: [</span>\n<ul ng-show="open">\n' +
+			var templateContent = '<span ng-show="open">: [</span>\n<ul ui-sortable ng-show="open">\n' +
 				'<li class="{{getType(value)}}" ng-repeat="(key, value) in node">' +
 				'<ps-node node="value"></ps-node>' +
 				'</li>' +
 				'</ul>\n<span ng-show="open">]</span>';
 
 			scope.regToggleCb(function (open) {
+				if(!scope.open)
+					scope.open = open;
+
 				scope.iconClass = open ? 'icon-folder-open-alt' : 'icon-folder-close-alt';
 				if (open) {
 					render();
@@ -178,10 +181,11 @@ app.directive('psArrayNode', function ($compile) {
 
 			if (scope.depth > 0) {
 				scope.toggle();
+				render();
 			}
 
 			function render() {
-//				var template = angular.element('<ul><li>' + icon + key + header + (scope.open?templateContent:'') +'</li></ul>');
+//				var template = angular.element('<ul><li>' + icon + key + header + (scope.open||open?templateContent:'') +'</li></ul>');
 				var template = angular.element(icon + key + header + (scope.open?templateContent:''));
 				var linkFunction = $compile(template);
 				linkFunction(scope);
@@ -218,7 +222,7 @@ app.directive('psObjectNode', function ($compile) {
 				return object.$$hashKey ? Object.keys(scope.node).length - 1 : Object.keys(scope.node).length;
 			}
 
-			var templateContent = '<span ng-show="open">: {</span>\n<ul ng-show="open">\n' +
+			var templateContent = '<span ng-show="open">: {</span>\n<ul ui-sortable ng-show="open">\n' +
 				'<li ng-repeat="(key, value) in node">' +
 				'<ps-node node="value"></ps-node>' +
 				'</li>' +

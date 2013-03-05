@@ -7,9 +7,14 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/sprites.css">
     <link rel="stylesheet" href="../../components/font-awesome/css/font-awesome.min.css">
+    <style type="text/css" href="../../app/lib/angular-ui/build/angular-ui.css"></style>
+
+    <link rel="stylesheet" href="../../app/lib/angular-ui/build/angular-ui.css">
 </head>
 <body ng-controller="NodeCtrl">
+<h1 class="ui-draggable">DEV</h1>
 
+<pre>node: {{node|json}}</pre>
 <!--
 <ps-boolean-node value="true"></ps-boolean-node><br/>
 <ps-number-node value="666"></ps-number-node><br/>
@@ -19,11 +24,35 @@
 -->
 <!--
 -->
-<ps-node-tree data="node" depth="0"></ps-node-tree>
+<ps-node-tree data="node" depth="5"></ps-node-tree>
 
-<script src="lib/jquery-1.9.1.js"></script>
-<script src="lib/jquery.sortable.js"></script>
-<script src="lib/angular/angular.js"></script>
+
+<!--
+<ul ui-sortable ng-model="parents">
+    <li ng-repeat="parent in parents">
+        <h3>{{parent.name}}</h3>
+        <ul class="children"
+            ui-sortable="{connectWith:'.children'}"
+            ng-model="parent.children">
+            <li ng-repeat="child in parent.children">
+                {{child}}
+            </li>
+        </ul>
+    </li>
+</ul>-->
+
+<script src="../../components/jquery/jquery.js"></script>
+<script src="../../components/jquery.ui/ui/jquery.ui.core.js"></script>
+<script src="../../components/jquery.ui/ui/jquery.ui.widget.js"></script>
+<script src="../../components/jquery.ui/ui/jquery.ui.mouse.js"></script>
+<script src="../../components/jquery.ui/ui/jquery.ui.draggable.js"></script>
+<script src="../../components/jquery.ui/ui/jquery.ui.droppable.js"></script>
+<script src="../../components/jquery.ui/ui/jquery.ui.sortable.js"></script>
+<script src="../../app/lib/angular/angular.js"></script>
+<script src="../../app/lib/angular-ui/build/angular-ui.js"></script>
+<script src="../../app/lib/angular-ui/modules/directives/jq"></script>
+<script src="../../app/lib/angular-ui/modules/directives/sortable/sortable.js"></script>
+
 <script src="js/app.js"></script>
 <script src="js/services.js"></script>
 <script src="js/controllers.js"></script>

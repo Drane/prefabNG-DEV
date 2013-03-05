@@ -1,4 +1,4 @@
 'use strict';
 /* App Module */
 console.debug('> in app.js');
-var app = angular.module('app', []);
+var app = angular.module('app', ['ui']);

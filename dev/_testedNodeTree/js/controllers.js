@@ -23,7 +23,14 @@ function NodeCtrl($scope) {
 		"string",
 		666
 	];*/
-
+	$scope.parents = [
+		{ name: 'Anna',
+			children: ['Alvin', 'Becky' ,'Charlie'] },
+		{ name: 'Barney',
+			children: ['Dorothy', 'Eric'] },
+		{ name: 'Chris',
+			children: ['Frank', 'Gary', 'Henry'] }
+	];
 	$scope.array = array;
 	$scope.node = node;
 }
