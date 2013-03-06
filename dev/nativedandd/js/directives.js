@@ -85,8 +85,31 @@ app.directive('psDraggable', function ($compile) {
 	console.log('> in psDraggable directive');
 
 	return {
-		controller:function ($scope, $element) {
+        scope: {
+            psDraggable: '='
+        },
+//template: 'in directive: <input type="text" ng-model="model.psDraggable">',
+		controller:function ($scope, $element, $attrs, $log) {
+            $log.info('controller fb');
+            $scope.log = $log;
             var thiz;
+/*            angular.forEach($scope.psDraggable, function(value, key){
+                $scope.model = {key: key, value: value};
+            });*/
+
+            $scope.model = {value : $scope.psDraggable};
+
+           /* // get the attribute value
+            console.log($attrs.ngModel);
+            // change the attribute
+            $attrs.$set('ngModel', $attrs.psDraggable);
+            // observe changes to interpolated attribute
+            $attrs.$observe('ngModel', function(value) {
+                console.log('ngModel has changed value to ' + value);
+            });*/
+            $attrs.$observe('psDraggable', function(value) {
+                console.log('psDraggable has changed value to ' + value);
+            });
 
 			$scope.handleDragStart = function ($event) {
 				console.debug("handleDragStart event:", $event);
@@ -101,7 +124,8 @@ app.directive('psDraggable', function ($compile) {
 				console.log('$scope.thiz',$scope.thiz);
 
 				$event.dataTransfer.effectAllowed = 'move';
-				var jsonScope = angular.toJson({key: $scope.key, value: $scope.value});
+				var jsonScope = angular.toJson($scope.$parent[$scope.psDraggable]);
+                $log.debug("jsonScope",jsonScope);
 //				var jsonScope = angular.toJson($scope);
 				$event.dataTransfer.setData('application/json', jsonScope);
 //				$event.dataTransfer.setData('text/html', $scope.thiz.innerHTML);
@@ -118,7 +142,7 @@ app.directive('psDraggable', function ($compile) {
 				console.log('$event.toElement', $event.toElement);
 				console.log($event.currentTarget === $event.fromElement);
 				console.log($event.currentTarget == $event.fromElement);
-
+                $scope.log = $log;
 
 				// this / $event.target is the current hover target.
 				$element.addClass('over');
@@ -172,7 +196,11 @@ app.directive('psDraggable', function ($compile) {
 //					this.innerHTML = $event.dataTransfer.getData('text/html');
 					var jsonString = $event.dataTransfer.getData('application/json');
 					swap(angular.fromJson(jsonString), $scope);
-					$compile($element)($scope).$apply();
+                    //var scope = this;
+                    $compile($element)($scope);
+//                    angular.compile($element.contents())().$apply();
+//                    var compiled = $compile($element.contents())($scope);
+                    compiled.$apply();
 //					updateLater(); // kick off the UI update process.
 /*					$scope.thiz.innerHTML = $event.currentTarget.innerHTML;
 					$event.currentTarget.innerHTML = $event.dataTransfer.getData('text/html');*/
@@ -184,6 +212,24 @@ app.directive('psDraggable', function ($compile) {
 
 				return false;
 			};
+
+            $scope.dblclick = function($event){
+                console.log('$scope:',$scope);
+
+
+
+                $scope.$parent[$scope.psDraggable] = "value3";
+                var scope = $element.scope();
+                $log.info(scope);
+                scope.nodeItem = "VALUE";
+                 $log.info(scope);
+
+                $log.info($scope);
+                $scope.nodeItem = "VALUE2";
+                $log.info($scope);
+//                this.$apply($scope);
+            };
+
 			$scope.handleDragEnd = function ($event) {
 				console.debug("handleDragEnd event:", $event);
 				// this/$event.target is the source node.
@@ -194,10 +240,22 @@ app.directive('psDraggable', function ($compile) {
 				});
 			};
 		},
-		link:function (scope, element, attrs) {
-			console.log('psArrayNode scope:', scope);
-			console.log('psArrayNode element:', element);
-			console.log('psArrayNode attrs:', attrs);
+		link:function (scope, element, attrs, ctrl) {
+            scope.log.info('yo');
+            /*// get the attribute value
+            console.log(attrs.ngModel);
+            // change the attribute
+            attrs.$set('ngModel', psDraggable);
+            // observe changes to interpolated attribute
+            attrs.$observe('ngModel', function(value) {
+                console.log('ngModel has changed value to ' + value);
+            });*/
+
+            console.log('psDraggable scope:', scope);
+            //scope[attrs.psDraggable] = scope.$parent[attrs.psDraggable];
+			console.log('psDraggable scope2:', scope);
+			console.log('psDraggable element:', element);
+			console.log('psDraggable attrs:', attrs);
 			element.attr('draggable', true);
 			element.bind('dragstart', scope.handleDragStart);
 			element.bind('dragenter', scope.handleDragEnter);

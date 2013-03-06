@@ -6,8 +6,11 @@ console.debug('> in controllers.js');
 function NodeCtrl($scope, $log) {
     $log.info('NodeCtrl');
     $scope.log = $log;
-	var node = [
-        "A", "B", "C"
+
+    var node = {value :["A","B"]};
+
+	var node2 = [
+        "A"//, "B", "C"
         /*
         {name: "a", val: "string"},
         {name: "b", val: "bbb"},

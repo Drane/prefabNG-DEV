@@ -1,12 +1,12 @@
 /* app css stylesheet */
 
 body {
-    padding-top: 20px;
+    /*padding-top: 20px;*/
 }
 
-.leaf {
+/*.leaf {
     background-color: rgba(169, 137, 255, 0.23);
-    /*font-style: italic;*/
+    *//*font-style: italic;*//*
 }
 
 .boolean-node {
@@ -19,7 +19,7 @@ body {
 
 .string-node {
     background-color: #10ff12;
-}
+}*/
 
 /*li .boolean-type {
     list-style-image: url("../img/boolean-icon-small.png");

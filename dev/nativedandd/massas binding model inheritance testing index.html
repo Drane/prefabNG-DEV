@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="app" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<html ng-app="app">
 <head>
     <script src="js/ba-hooker.js"></script>
     <title>Native D&D</title>
@@ -82,27 +82,19 @@
             font-weight: bold;
             text-shadow: #fff 0 1px
         }
-        input{
-            width: 80px;
-        }
     </style>
 </head>
 <body ng-controller="NodeCtrl">
 <pre>node: {{node|json}}</pre>
-node0: <input type="text" ng-model="node.value[0]">
-node1: <input type="text" ng-model="node.value[1]">
+node: <input type="text" ng-model="node.value">
 <ul id="columns">
-    <li ng-repeat="value in node.value" class="column" ps-draggable="value" ng-dblclick="dblclick($event)">
-        psDraggable: {{psDraggable}}<br/>
-        <input type="text" ng-model="psDraggable"><br/>
-        {{log.info('$scope:',this)}}
-    </li>
-
     <!--<li ng-repeat="(key, value) in node.value" class="column" ps-draggable="(key, value)" ng-dblclick="dblclick($event)">-->
-<!--    <li class="column" ps-draggable="node.value" ng-dblclick="dblclick($event)">
+    <li class="column" ps-draggable="node.value" ng-dblclick="dblclick($event)">
         {{node.value}} {{model.key}} => {{model.value}}<br/>
         {{psDraggable}}<input type="text" ng-model="psDraggable">
-    </li>-->
+
+        <!--<input type="text" ng-model="model.value">-->
+    </li>
     <!--<li class="column"  ps-draggable>
         A&lt;!&ndash;<header>A</header>&ndash;&gt;
     </li>
